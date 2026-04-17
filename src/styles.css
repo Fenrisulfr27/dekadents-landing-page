@@ -1,0 +1,10 @@
+html, body, #root {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+button,
+.mantine-Title-root,
+.mantine-Button-root {
+  font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
