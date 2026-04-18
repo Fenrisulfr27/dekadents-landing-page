@@ -17,7 +17,7 @@ export function FeaturesSection() {
         <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing={0}>
           {features.map((feature, index) => (
             <Box
-              key={feature.title}
+              key={feature.titleKey}
               style={{
                 borderLeft: index === 0 ? "none" : "1px solid rgba(255,255,255,0.06)",
               }}
