@@ -22,7 +22,6 @@ export default function PageFrame({ children }: Props) {
         backgroundColor: "#050505",
       }}
     >
-      {/* FIKSEERITUD HERO BACKGROUND */}
       <Box
         style={{
           position: "absolute",
@@ -141,9 +140,8 @@ export default function PageFrame({ children }: Props) {
                         color: "#ece7de",
                         borderColor: "rgba(255,255,255,0.18)",
                         textTransform: "uppercase",
-                        letterSpacing: 2,
+                        letterSpacing: 1,
                         background: "rgba(255,255,255,0.01)",
-                        paddingInline: 18,
                       },
                     }}
                   >

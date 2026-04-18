@@ -7,40 +7,42 @@ export function LanguageSwitcher() {
   return (
     <Group gap={4}>
       <Button
-        size="xs"
+        size="md"
         radius={0}
-        variant={language === "en" ? "filled" : "subtle"}
+        variant={language === "en" ? "filled" : "outline"}
         onClick={() => setLanguage("en")}
         styles={{
           root: {
+            height: 36,
+            lineHeight: 36,
             background: language === "en" ? "#ece5d8" : "transparent",
             color: language === "en" ? "#111111" : "#bbb4aa",
             border: "1px solid rgba(255,255,255,0.18)",
             textTransform: "uppercase",
             letterSpacing: 1,
-            padding: "4px 10px",
-            height: "auto",
-            fontSize: 11,
+            padding: "0 12px",
+            fontSize: 12,
           },
         }}
       >
         ENG
       </Button>
       <Button
-        size="xs"
+        size="md"
         radius={0}
-        variant={language === "et" ? "filled" : "subtle"}
+        variant={language === "et" ? "filled" : "outline"}
         onClick={() => setLanguage("et")}
         styles={{
           root: {
+            height: 36,
+            lineHeight: 36,
             background: language === "et" ? "#ece5d8" : "transparent",
             color: language === "et" ? "#111111" : "#bbb4aa",
             border: "1px solid rgba(255,255,255,0.18)",
             textTransform: "uppercase",
             letterSpacing: 1,
-            padding: "4px 10px",
-            height: "auto",
-            fontSize: 11,
+            padding: "0 12px",
+            fontSize: 12,
           },
         }}
       >

@@ -19,7 +19,8 @@ export function FeaturesSection() {
             <Box
               key={feature.titleKey}
               style={{
-                borderLeft: index === 0 ? "none" : "1px solid rgba(255,255,255,0.06)",
+                borderLeft:
+                  index === 0 ? "none" : "1px solid rgba(255,255,255,0.06)",
               }}
             >
               <FeatureCard feature={feature} />
