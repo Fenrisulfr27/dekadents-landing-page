@@ -123,6 +123,9 @@ export default function PageFrame({ children }: Props) {
                 </Group>
 
                 <Button
+                  component="a"
+                  href="https://discord.gg/wCykm7AFNE"
+                  target="_blank"
                   radius={0}
                   variant="outline"
                   leftSection={<IconBrandDiscord size={16} />}

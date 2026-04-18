@@ -54,6 +54,9 @@ export function HeroSection() {
 
             <Group>
               <Button
+                component="a"
+                href="https://discord.gg/wCykm7AFNE"
+                target="_blank"
                 size="md"
                 radius={0}
                 leftSection={<IconBrandDiscord size={16} />}

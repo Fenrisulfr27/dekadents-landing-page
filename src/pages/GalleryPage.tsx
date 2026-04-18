@@ -399,6 +399,9 @@ export default function GalleryPage() {
               </Text>
 
               <Button
+                component="a"
+                href="https://discord.gg/wCykm7AFNE"
+                target="_blank"
                 radius={0}
                 size="lg"
                 leftSection={<IconBrandDiscord size={18} />}

@@ -79,6 +79,9 @@ export function CTASection() {
           </Group>
 
           <Button
+            component="a"
+            href="https://discord.gg/wCykm7AFNE"
+            target="_blank"
             size="lg"
             radius={0}
             leftSection={<IconBrandDiscord size={18} />}
