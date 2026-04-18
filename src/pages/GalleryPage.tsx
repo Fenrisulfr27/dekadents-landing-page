@@ -14,12 +14,14 @@ import {
 } from "@mantine/core";
 import { IconBrandDiscord, IconArrowRight } from "@tabler/icons-react";
 import PageFrame from "../components/PageFrame";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 type GalleryItem = {
   id: number;
   title: string;
   artist: string;
-  category: "Featured" | "Digital" | "Traditional" | "Photography" | "Sketches";
+  category: "featured" | "digital" | "traditional" | "photography" | "sketches";
   image: string;
   sourceUrl?: string;
   description?: string;
@@ -30,7 +32,7 @@ const items: GalleryItem[] = [
     id: 1,
     title: "AA78",
     artist: "Zdzisław Beksiński",
-    category: "Featured",
+    category: "featured",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/AA78_by_Zdzislaw_Beksinski_1978.jpg",
     sourceUrl:
@@ -42,7 +44,7 @@ const items: GalleryItem[] = [
     id: 2,
     title: "Untitled Painting",
     artist: "Zdzisław Beksiński",
-    category: "Traditional",
+    category: "traditional",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/Untitled_painting_by_Zdzislaw_Beksinski_1984.jpg",
     sourceUrl:
@@ -54,7 +56,7 @@ const items: GalleryItem[] = [
     id: 3,
     title: "Król i królowa",
     artist: "Zdzisław Beksiński",
-    category: "Traditional",
+    category: "traditional",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/Krol_i_krolowa_by_Zdzislaw_Beksinski_1993.jpg",
     sourceUrl:
@@ -65,7 +67,7 @@ const items: GalleryItem[] = [
     id: 4,
     title: "Untitled Computer Graphic",
     artist: "Zdzisław Beksiński",
-    category: "Digital",
+    category: "digital",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/Untitled_computer_graphic_by_Zdzislaw_Beksinski_2001.jpg",
     sourceUrl:
@@ -76,7 +78,7 @@ const items: GalleryItem[] = [
     id: 5,
     title: "Untitled Computer Graphic II",
     artist: "Zdzisław Beksiński",
-    category: "Digital",
+    category: "digital",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/Untitled_computer_graphic_2_by_Zdzislaw_Beksinski_2001.jpg",
     sourceUrl:
@@ -87,7 +89,7 @@ const items: GalleryItem[] = [
     id: 6,
     title: "S4",
     artist: "Zdzisław Beksiński",
-    category: "Featured",
+    category: "featured",
     image:
       "https://commons.wikimedia.org/wiki/Special:FilePath/S4_by_Zdzislaw_Beksinski_2004.jpg",
     sourceUrl:
@@ -98,17 +100,20 @@ const items: GalleryItem[] = [
 ];
 
 const filters = [
-  "All",
-  "Featured",
-  "Digital",
-  "Traditional",
-  "Photography",
-  "Sketches",
+  "all",
+  "featured",
+  "digital",
+  "traditional",
+  "photography",
+  "sketches",
 ] as const;
 
 type Filter = (typeof filters)[number];
 
 function GalleryCard({ item }: { item: GalleryItem }) {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Card
       radius={0}
@@ -166,7 +171,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
             background: "rgba(0,0,0,0.28)",
           }}
         >
-          {item.category}
+          {t[item.category]}
         </Badge>
       </Box>
 
@@ -202,10 +207,12 @@ function GalleryCard({ item }: { item: GalleryItem }) {
 }
 
 export default function GalleryPage() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
+  const [activeFilter, setActiveFilter] = useState<Filter>("all");
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const filteredItems = useMemo(() => {
-    if (activeFilter === "All") return items;
+    if (activeFilter === "all") return items;
     return items.filter((item) => item.category === activeFilter);
   }, [activeFilter]);
 
@@ -228,7 +235,7 @@ export default function GalleryPage() {
                 fontSize: 14,
               }}
             >
-              Curated archive
+              {t.curatedArchive}
             </Text>
 
             <Title
@@ -241,12 +248,11 @@ export default function GalleryPage() {
                 fontWeight: 500,
               }}
             >
-              Gallery
+              {t.gallery}
             </Title>
 
             <Text c="gray.4" size="xl" maw={700} lh={1.7}>
-              A curated archive of dark aesthetics, visual experiments, and
-              selected work from the Dekadents community.
+              {t.galleryDescription}
             </Text>
           </Stack>
 
@@ -268,7 +274,7 @@ export default function GalleryPage() {
                   },
                 }}
               >
-                {filter}
+                {t[filter]}
               </Button>
             ))}
           </Group>
@@ -305,7 +311,7 @@ export default function GalleryPage() {
                     fontSize: 14,
                   }}
                 >
-                  Featured work
+                  {t.featuredWork}
                 </Text>
 
                 <Title
@@ -390,12 +396,11 @@ export default function GalleryPage() {
                   lineHeight: 1,
                 }}
               >
-                Submit your work
+                {t.submitWork}
               </Text>
 
               <Text c="gray.4" ta="center" maw={760} size="lg" lh={1.8}>
-                Join the Discord server, share your work, and get featured in
-                the archive.
+                {t.submitDescription}
               </Text>
 
               <Button
@@ -414,7 +419,7 @@ export default function GalleryPage() {
                   },
                 }}
               >
-                Join Our Discord
+                {t.joinOurDiscord}
               </Button>
             </Stack>
           </Card>

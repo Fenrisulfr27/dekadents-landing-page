@@ -1,11 +1,15 @@
 import { Box, Stack, Text, ThemeIcon } from "@mantine/core";
 import type { Feature } from "../data/features";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 type Props = {
   feature: Feature;
 };
 
 export function FeatureCard({ feature }: Props) {
+  const { language } = useLanguage();
+  const t = translations[language];
   const Icon = feature.icon;
 
   return (
@@ -31,11 +35,11 @@ export function FeatureCard({ feature }: Props) {
             fontSize: 19,
           }}
         >
-          {feature.title}
+          {t[feature.titleKey]}
         </Text>
 
         <Text ta="center" c="gray.5" size="md" lh={1.8}>
-          {feature.text}
+          {t[feature.descKey]}
         </Text>
       </Stack>
     </Box>

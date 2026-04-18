@@ -10,8 +10,13 @@ import {
   Title,
 } from "@mantine/core";
 import { IconBrandDiscord } from "@tabler/icons-react";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 export function HeroSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <Container size={1280} pt={46} pb={0}>
       <Grid gutter={40} align="center">
@@ -27,7 +32,7 @@ export function HeroSection() {
                   lineHeight: 1,
                 }}
               >
-                DEKADENTS
+                {t.dekadents}
               </Title>
 
               <Text
@@ -41,15 +46,14 @@ export function HeroSection() {
                   maxWidth: 300,
                 }}
               >
-                A Discord community for artists and creatives.
+                {t.communityDescription}
               </Text>
             </Box>
 
             <Divider color="rgba(255,255,255,0.1)" maw={160} />
 
             <Text c="gray.4" size="lg" lh={1.7} maw={340}>
-              Share your art. Get inspired. Connect with like-minded creatives
-              in a dark and decadent atmosphere.
+              {t.communityText}
             </Text>
 
             <Group>
@@ -72,7 +76,7 @@ export function HeroSection() {
                   },
                 }}
               >
-                Join Discord
+                {t.joinDiscord}
               </Button>
 
               <Button
@@ -90,7 +94,7 @@ export function HeroSection() {
                   },
                 }}
               >
-                Learn More
+                {t.learnMore}
               </Button>
             </Group>
           </Stack>

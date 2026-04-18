@@ -8,8 +8,12 @@ import {
   Text,
 } from "@mantine/core";
 import { IconBrandDiscord } from "@tabler/icons-react";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 export function CTASection() {
+  const { language } = useLanguage();
+  const t = translations[language];
   return (
     <Container size={1280} pt={42} pb={58}>
       <Box
@@ -73,7 +77,7 @@ export function CTASection() {
                 lineHeight: 1,
               }}
             >
-              Enter the Decadence
+              {t.enterDecadence}
             </Text>
             <Divider color="rgba(255,255,255,0.14)" w={90} visibleFrom="sm" />
           </Group>
@@ -97,7 +101,7 @@ export function CTASection() {
               },
             }}
           >
-            Join Our Discord
+            {t.joinOurDiscord}
           </Button>
         </Stack>
       </Box>

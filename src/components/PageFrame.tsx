@@ -3,12 +3,17 @@ import { AppShell, Box, Button, Container, Group, Text } from "@mantine/core";
 import { IconBrandDiscord } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { navItems } from "../data/features";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "../context/LanguageContext";
+import { translations } from "../data/translations";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export default function PageFrame({ children }: Props) {
+  const { language } = useLanguage();
+  const t = translations[language];
   return (
     <Box
       style={{
@@ -96,9 +101,9 @@ export default function PageFrame({ children }: Props) {
                 <Group gap={38} visibleFrom="md">
                   {navItems.map((item) => {
                     const href =
-                      item === "Home"
+                      item === "home"
                         ? "/"
-                        : item === "Gallery"
+                        : item === "gallery"
                           ? "/gallery"
                           : "/";
 
@@ -116,32 +121,35 @@ export default function PageFrame({ children }: Props) {
                           textDecoration: "none",
                         }}
                       >
-                        {item}
+                        {t[item]}
                       </Text>
                     );
                   })}
                 </Group>
 
-                <Button
-                  component="a"
-                  href="https://discord.gg/wCykm7AFNE"
-                  target="_blank"
-                  radius={0}
-                  variant="outline"
-                  leftSection={<IconBrandDiscord size={16} />}
-                  styles={{
-                    root: {
-                      color: "#ece7de",
-                      borderColor: "rgba(255,255,255,0.18)",
-                      textTransform: "uppercase",
-                      letterSpacing: 2,
-                      background: "rgba(255,255,255,0.01)",
-                      paddingInline: 18,
-                    },
-                  }}
-                >
-                  Join Discord
-                </Button>
+                <Group gap={12}>
+                  <LanguageSwitcher />
+                  <Button
+                    component="a"
+                    href="https://discord.gg/wCykm7AFNE"
+                    target="_blank"
+                    radius={0}
+                    variant="outline"
+                    leftSection={<IconBrandDiscord size={16} />}
+                    styles={{
+                      root: {
+                        color: "#ece7de",
+                        borderColor: "rgba(255,255,255,0.18)",
+                        textTransform: "uppercase",
+                        letterSpacing: 2,
+                        background: "rgba(255,255,255,0.01)",
+                        paddingInline: 18,
+                      },
+                    }}
+                  >
+                    {t.joinDiscord}
+                  </Button>
+                </Group>
               </Group>
             </Container>
           </AppShell.Header>
