@@ -102,9 +102,13 @@ export default function PageFrame({ children }: Props) {
                     const href =
                       item === "home"
                         ? "/"
-                        : item === "gallery"
-                          ? "/gallery"
-                          : "/";
+                        : item === "about"
+                          ? "/about"
+                          : item === "gallery"
+                            ? "/gallery"
+                            : item === "rules"
+                              ? "/rules"
+                              : "/";
 
                     return (
                       <Text

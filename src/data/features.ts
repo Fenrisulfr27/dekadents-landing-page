@@ -15,7 +15,7 @@ export type Feature = {
   descKey: TranslationKey;
 };
 
-export const navItems = ["home", "about", "gallery", "rules", "join"] as const;
+export const navItems = ["home", "about", "gallery", "rules"] as const;
 
 export const features: Feature[] = [
   {
