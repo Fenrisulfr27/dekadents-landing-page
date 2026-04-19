@@ -10,7 +10,11 @@ export default function AboutPage() {
 
   return (
     <PageFrame>
-      <Container size={1280} py={72} style={{ position: "relative", zIndex: 1 }}>
+      <Container
+        size={1280}
+        py={72}
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <Stack gap={42}>
           <Stack gap={16} maw={900}>
             <Title
@@ -71,7 +75,12 @@ export default function AboutPage() {
                 {t.aboutWhat}
               </Title>
 
-              <Text c="gray.4" size="lg" lh={1.8} style={{ whiteSpace: "pre-line" }}>
+              <Text
+                c="gray.4"
+                size="lg"
+                lh={1.8}
+                style={{ whiteSpace: "pre-line" }}
+              >
                 {t.aboutWhatText}
               </Text>
             </Stack>

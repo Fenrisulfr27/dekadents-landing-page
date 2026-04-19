@@ -10,7 +10,11 @@ export default function RulesPage() {
 
   return (
     <PageFrame>
-      <Container size={1280} py={72} style={{ position: "relative", zIndex: 1 }}>
+      <Container
+        size={1280}
+        py={72}
+        style={{ position: "relative", zIndex: 1 }}
+      >
         <Stack gap={42}>
           <Stack gap={16} maw={760}>
             <Title

@@ -18,40 +18,44 @@ export const translations = {
     traditional: "Traditional",
     photography: "Photography",
     sketches: "Sketches",
-    communityDescription: "A Discord community for artists and creatives.",
+    communityDescription:
+      "A Discord community for artists, photographers, poets, and anyone drawn to creative expression.",
     communityText:
-      "Share your art. Get inspired. Connect with like-minded creatives in a dark and decadent atmosphere.",
+      "Share your work. Find inspiration. Connect with people who move in the same creative direction.",
     learnMore: "Learn More",
     submitWork: "Submit your work",
     submitDescription:
       "Join the Discord server, share your work, and get featured in the archive.",
-    // Features
+
     artFeedback: "Art & Feedback",
     artFeedbackDesc:
-      "Share your work and get constructive feedback from fellow artists.",
+      "Share your work and get constructive feedback from fellow creatives.",
     inspiration: "Inspiration",
     inspirationDesc:
-      "Daily inspiration, moodboards, resources, and creative discussions.",
+      "Share references, visuals, and ideas, and find inspiration through the work and discussions of others.",
     community: "Community",
     communityDesc:
-      "Friendly and active community of artists from around the world.",
-    exclusiveRoles: "Exclusive Roles",
+      "A friendly and active creative community from around the world.",
+    exclusiveRoles: "Trivia & Weekly Challenges",
     exclusiveRolesDesc:
-      "Unlock roles, channels, and perks by being an active member.",
+      "Test your knowledge in art-themed trivia and take part in weekly drawing and photography challenges.",
+
     featuredWork: "Featured work",
     rulesTitle: "Rules",
     rule1:
       "Do not share, repost, distribute, or circulate anyone's work outside this community without the creator's explicit consent. This includes screenshots, downloads, reposts, and sending other content to third parties.",
+
     aboutTitle: "About",
     aboutDescription:
-      "Dekadents is an exclusive Discord community dedicated to artists, designers, and creative visionaries who celebrate dark aesthetics, experimental art, and unconventional creativity. Our community serves as a sanctuary for those who seek to share their work, receive constructive feedback, and connect with like-minded creatives from around the world.",
+      "Dekadents is a curated Discord community for artists, photographers, poets, and other creatives who are drawn to darker aesthetics, visual experimentation, and sincere creative exchange. It is a space for sharing work, discovering new inspiration, and connecting with people who value originality, atmosphere, and artistic identity.",
     aboutMission: "Our Mission",
     aboutMissionText:
-      "We create a supportive environment where artists can showcase their creations, participate in collaborative projects, gain inspiration from peers, and develop their craft within a carefully curated community that values artistic integrity and originality.",
+      "Our mission is to create a focused and inspiring environment where members can share their work, receive meaningful feedback, develop their ideas, and grow alongside a community that values authenticity, experimentation, and artistic integrity.",
     aboutWhat: "What You Can Do Here",
     aboutWhatText:
-      "Share your artwork in dedicated channels • Receive constructive feedback and critique • Participate in community events and challenges • Access exclusive resources and tutorials • Network with talented artists • Get featured in our curated archive • Join collaborative projects and exhibitions.",
+      "Share your work in dedicated channels • Receive thoughtful feedback and critique • Exchange references, ideas, and inspiration • Take part in art trivia and weekly drawing or photography challenges • Discover other artists and their work • Become part of a carefully curated creative community.",
   },
+
   et: {
     home: "Avaleht",
     about: "Meist",
@@ -59,45 +63,49 @@ export const translations = {
     rules: "Reeglid",
     join: "Liitu",
     joinDiscord: "Liitu Discordiga",
-    joinOurDiscord: "Liitu Meie Discordiga",
-    enterDecadence: "Sisenege dekadentsusse",
+    joinOurDiscord: "Liitu meie Discordiga",
+    enterDecadence: "Sisene Dekadentsi",
     dekadents: "DEKADENTS",
     communityDescription:
-      "Discordi kogukond kunstnikele ja loovilistele inimestele.",
+      "Discordi kogukond kunstnikele, fotograafidele, luuletajatele ja teistele loomehuvilistele.",
     communityText:
-      "Jagage oma kunsti. Saage inspiratsiooni. Ühendage end sarnaselt meelestatud loovtöötajatega tumeda ja dekadentse atmosfääris.",
+      "Jaga oma loomingut. Saa inspiratsiooni. Leia sarnase loometunnetusega inimesi.",
     learnMore: "Lisateave",
-    submitWork: "Esitage oma töö",
+    submitWork: "Esita oma töö",
     submitDescription:
-      "Liituge Discordi serveriga, jagage oma tööd ja saage funktsioonitud arhiivis.",
-    // Features
-    artFeedback: "Kunst & Tagasiside",
+      "Liitu Discordi serveriga, jaga oma tööd ja saa esindatud galeriis.",
+
+    artFeedback: "Loome & Tagasiside",
     artFeedbackDesc:
-      "Jagage oma tööd ja saage konstruktiivset tagasisidet teistelt kunstnikelt.",
+      "Jaga oma tööd ja saa konstruktiivset tagasisidet teistelt loomeinimestelt.",
     inspiration: "Inspirasioon",
     inspirationDesc:
-      "Päevane inspirasioon, moodboard, ressursid ja loovad arutelud.",
+      "Jaga viiteid, visuale ja ideid ning leia inspiratsiooni teiste loomingust ja aruteludest.",
     community: "Kogukond",
-    communityDesc: "Sõbralik ja aktiivne kunstnike kogukond kogu maailmast.",
-    exclusiveRoles: "Eksklusiivsed rollid",
+    communityDesc:
+      "Sõbralik ja aktiivne loomeinimeste kogukond kogu maailmast.",
+    exclusiveRoles: "Mälumäng & nädalaväljakutsed",
     exclusiveRolesDesc:
-      "Avage rollid, kanalid ja eriõigused, kui olete aktiivne liige.",
+      "Pane end proovile kunstiteemalises trivias ning osale iganädalastes joonistamis- ja fotograafiaväljakutsetes.",
+
     featuredWork: "Esiletõstetud töö",
     rulesTitle: "Reeglid",
     rule1:
-      "Serveris jagatud tööde või loomingu levitamine ja edasi saatmine väljaspoole serverit ilma autori selgesonaline nõusolekuta on keelatud. See hõlmab kuvatõmmiseid, allaaladimisi või muu sisu saatmist kolmandatele osapoolteile.",
+      "Serveris jagatud tööde või loomingu levitamine ja edasi saatmine väljapoole serverit ilma autori selgesõnalise nõusolekuta on keelatud. See hõlmab kuvatõmmiseid, allalaadimisi või muu sisu saatmist kolmandatele osapooltele.",
+
     aboutTitle: "Meist",
     aboutDescription:
-      "Dekadents on eksklusiivsete Discordi kogukond, mis on pühendatud kunstnikele, disaineritele ja loovtajatele, kes arendavad tumedaid esteetikat, eksperimentaalset kunsti ja ebatavalist loovust. Meie kogukond on kaitsealune ruum neile, kes soovivad oma töid jagada, saada konstruktiivset tagasisidet ja ühendada end kogu maailmast pärit sarnaselt meelestatud kunstnikatega.",
+      "Dekadents on kureeritud Discordi kogukond kunstnikele, fotograafidele, luuletajatele ja teistele loomeinimestele, keda kõnetavad tumedam esteetika, visuaalsed eksperimendid ja siiras loominguline eneseväljendus. See on koht, kus saab jagada oma töid, leida uut inspiratsiooni ja suhelda inimestega, kes väärtustavad originaalsust, atmosfääri ja kunstilist identiteeti.",
     aboutMission: "Meie missioon",
     aboutMissionText:
-      "Me loome toetavat keskkonda, kus kunstnikud saavad oma loomingut esitleda, osaleda koostöö projektides, saada inspiratsiooni kolleegidelt ja arendada oma kunsti hoolikalt valitud kogukonna jooksul, mis väärustab kunstilist terviklikkust ja originaalsust.",
+      "Meie eesmärk on luua keskendunud ja inspireeriv keskkond, kus liikmed saavad oma loomingut jagada, sisukat tagasisidet saada, ideid arendada ning kasvada koos kogukonnaga, mis väärtustab ausust, eksperimenteerimist ja kunstilist terviklikkust.",
     aboutWhat: "Mida siin teha saab",
     aboutWhatText:
-      "Jaga oma kunstit spetsiaalsetele kanalitele • Saa konstruktiivset tagasisidet ja kriitika • Osale kogukonna üritustel ja välistlustel • Juurdepääs eksklusiivsele materjale ja õpetustele • Võrgusta talenteeritud kunstnikatega • Saa esiletoomisele meie valitud arhiivis • Osale koostöö projektides ja näitustel.",
-    curatedArchive: "Kuratoorne arhiiv",
+      "Jaga oma töid eraldi kanalites • Saa läbimõeldud tagasisidet ja kriitikat • Vaheta viiteid, ideid ja inspiratsiooni • Osale kunstiteemalises trivias ning iganädalastes joonistamis- või fotograafiaväljakutsetes • Avasta teiste loojate töid • Ole osa hoolikalt kureeritud loomingulisest kogukonnast.",
+
+    curatedArchive: "Kureeritud arhiiv",
     galleryDescription:
-      "Tumeda esteetika, visuaalsete katsetuste ja Dekadentsi kogukonna valitud tööde kuratoorne arhiiv.",
+      "Tumeda esteetika, visuaalsete katsetuste ja Dekadentsi kogukonna valitud tööde kureeritud arhiiv.",
     all: "Kõik",
     featured: "Esiletõstetud",
     digital: "Digitaalne",
