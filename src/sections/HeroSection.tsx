@@ -39,7 +39,6 @@ export function HeroSection() {
                 mt="md"
                 style={{
                   color: "#c8c2b8",
-                  textTransform: "uppercase",
                   letterSpacing: 2.6,
                   fontSize: 15,
                   lineHeight: 1.45,
