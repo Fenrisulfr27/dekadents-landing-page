@@ -18,7 +18,8 @@ export function FeatureCard({ feature }: Props) {
         minHeight: 238,
         display: "flex",
         justifyContent: "center",
-        padding: "42px 28px 28px",
+        padding:
+          "clamp(24px, 6vw, 42px) clamp(16px, 4vw, 28px) clamp(16px, 4vw, 28px)",
       }}
     >
       <Stack align="center" gap="md" maw={230}>
@@ -32,7 +33,7 @@ export function FeatureCard({ feature }: Props) {
             color: "#d5d0c7",
             textTransform: "uppercase",
             letterSpacing: 3.8,
-            fontSize: 19,
+            fontSize: "clamp(14px, 2.5vw, 19px)",
           }}
         >
           {t[feature.titleKey]}

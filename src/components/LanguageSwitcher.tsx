@@ -7,42 +7,42 @@ export function LanguageSwitcher() {
   return (
     <Group gap={4}>
       <Button
-        size="md"
+        size="sm"
         radius={0}
         variant={language === "en" ? "filled" : "outline"}
         onClick={() => setLanguage("en")}
         styles={{
           root: {
-            height: 36,
-            lineHeight: 36,
+            height: "clamp(32px, 5vw, 36px)",
+            lineHeight: "clamp(32px, 5vw, 36px)",
             background: language === "en" ? "#ece5d8" : "transparent",
             color: language === "en" ? "#111111" : "#bbb4aa",
             border: "1px solid rgba(255,255,255,0.18)",
             textTransform: "uppercase",
             letterSpacing: 1,
-            padding: "0 12px",
-            fontSize: 12,
+            padding: "0 clamp(8px, 2vw, 12px)",
+            fontSize: "clamp(10px, 1.5vw, 12px)",
           },
         }}
       >
         ENG
       </Button>
       <Button
-        size="md"
+        size="sm"
         radius={0}
         variant={language === "et" ? "filled" : "outline"}
         onClick={() => setLanguage("et")}
         styles={{
           root: {
-            height: 36,
-            lineHeight: 36,
+            height: "clamp(32px, 5vw, 36px)",
+            lineHeight: "clamp(32px, 5vw, 36px)",
             background: language === "et" ? "#ece5d8" : "transparent",
             color: language === "et" ? "#111111" : "#bbb4aa",
             border: "1px solid rgba(255,255,255,0.18)",
             textTransform: "uppercase",
             letterSpacing: 1,
-            padding: "0 12px",
-            fontSize: 12,
+            padding: "0 clamp(8px, 2vw, 12px)",
+            fontSize: "clamp(10px, 1.5vw, 12px)",
           },
         }}
       >

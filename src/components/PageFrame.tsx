@@ -1,6 +1,16 @@
-import React from "react";
-import { AppShell, Box, Button, Container, Group, Text } from "@mantine/core";
-import { IconBrandDiscord } from "@tabler/icons-react";
+import React, { useState } from "react";
+import {
+  AppShell,
+  Box,
+  Button,
+  Container,
+  Group,
+  Text,
+  Drawer,
+  Stack,
+  Divider,
+} from "@mantine/core";
+import { IconBrandDiscord, IconMenu2, IconX } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { navItems } from "../data/features";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -12,6 +22,7 @@ type Props = {
 };
 
 export default function PageFrame({ children }: Props) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
   return (
@@ -71,7 +82,7 @@ export default function PageFrame({ children }: Props) {
       >
         <AppShell
           padding={0}
-          header={{ height: 78 }}
+          header={{ height: { base: 64, sm: 78 } }}
           styles={{
             main: {
               background: "transparent",
@@ -84,15 +95,15 @@ export default function PageFrame({ children }: Props) {
           }}
         >
           <AppShell.Header>
-            <Container size={1280} h="100%">
+            <Container size={1280} h="100%" px={{ base: 16, sm: 20 }}>
               <Group justify="space-between" h="100%">
                 <Box
                   component="img"
                   src="/assets/logo.png"
                   alt="Dekadents logo"
                   style={{
-                    width: 70,
-                    height: 70,
+                    width: 50,
+                    height: 50,
                     objectFit: "contain",
                   }}
                 />
@@ -115,6 +126,7 @@ export default function PageFrame({ children }: Props) {
                         key={item}
                         component={Link}
                         to={href}
+                        onClick={() => setMobileMenuOpen(false)}
                         style={{
                           color: "#bbb4aa",
                           textTransform: "uppercase",
@@ -130,7 +142,7 @@ export default function PageFrame({ children }: Props) {
                   })}
                 </Group>
 
-                <Group gap={12}>
+                <Group gap="md">
                   <LanguageSwitcher />
                   <Button
                     component="a"
@@ -138,6 +150,29 @@ export default function PageFrame({ children }: Props) {
                     target="_blank"
                     radius={0}
                     variant="outline"
+                    hiddenFrom="sm"
+                    leftSection={<IconBrandDiscord size={16} />}
+                    size="xs"
+                    styles={{
+                      root: {
+                        color: "#ece7de",
+                        borderColor: "rgba(255,255,255,0.18)",
+                        textTransform: "uppercase",
+                        letterSpacing: 1,
+                        background: "rgba(255,255,255,0.01)",
+                        padding: "6px 12px",
+                      },
+                    }}
+                  >
+                    {t.joinDiscord}
+                  </Button>
+                  <Button
+                    component="a"
+                    href="https://discord.gg/wCykm7AFNE"
+                    target="_blank"
+                    radius={0}
+                    variant="outline"
+                    visibleFrom="sm"
                     leftSection={<IconBrandDiscord size={16} />}
                     styles={{
                       root: {
@@ -151,10 +186,91 @@ export default function PageFrame({ children }: Props) {
                   >
                     {t.joinDiscord}
                   </Button>
+                  <Button
+                    hiddenFrom="md"
+                    variant="subtle"
+                    color="gray"
+                    onClick={() => setMobileMenuOpen(true)}
+                    style={{
+                      color: "#bbb4aa",
+                    }}
+                    p={0}
+                    w={36}
+                    h={36}
+                  >
+                    <IconMenu2 size={20} />
+                  </Button>
                 </Group>
               </Group>
             </Container>
           </AppShell.Header>
+
+          <Drawer
+            opened={mobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
+            title=""
+            padding="md"
+            styles={{
+              content: {
+                background: "#050505",
+                borderLeft: "1px solid rgba(255,255,255,0.08)",
+              },
+              header: {
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+              },
+            }}
+          >
+            <Stack gap="md" pt="md">
+              <Group justify="space-between" mb="md">
+                <Text size="sm" fw={500} c="gray.4">
+                  {t.menu}
+                </Text>
+                <Button
+                  variant="subtle"
+                  color="gray"
+                  onClick={() => setMobileMenuOpen(false)}
+                  p={0}
+                  w={32}
+                  h={32}
+                >
+                  <IconX size={20} />
+                </Button>
+              </Group>
+              <Divider color="rgba(255,255,255,0.1)" />
+              {navItems.map((item) => {
+                const href =
+                  item === "home"
+                    ? "/"
+                    : item === "about"
+                      ? "/about"
+                      : item === "gallery"
+                        ? "/gallery"
+                        : item === "rules"
+                          ? "/rules"
+                          : "/";
+
+                return (
+                  <Text
+                    key={item}
+                    component={Link}
+                    to={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      color: "#bbb4aa",
+                      textTransform: "uppercase",
+                      letterSpacing: 2,
+                      fontSize: 14,
+                      cursor: "pointer",
+                      textDecoration: "none",
+                      padding: "8px 0",
+                    }}
+                  >
+                    {t[item]}
+                  </Text>
+                );
+              })}
+            </Stack>
+          </Drawer>
 
           <AppShell.Main>{children}</AppShell.Main>
         </AppShell>

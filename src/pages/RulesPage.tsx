@@ -12,18 +12,20 @@ export default function RulesPage() {
     <PageFrame>
       <Container
         size={1280}
-        py={72}
+        pt={{ base: 88, sm: 100, md: 120 }}
+        pb={{ base: 40, sm: 52, md: 72 }}
+        px={{ base: 16, sm: 20, md: 40 }}
         style={{ position: "relative", zIndex: 1 }}
       >
-        <Stack gap={42}>
-          <Stack gap={16} maw={760}>
+        <Stack gap="xl">
+          <Stack gap="md" maw={760}>
             <Title
               order={1}
               style={{
                 fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                fontSize: "clamp(42px, 6vw, 78px)",
-                lineHeight: 1,
-                letterSpacing: 6,
+                fontSize: "clamp(32px, 7vw, 78px)",
+                lineHeight: 1.1,
+                letterSpacing: 5,
                 fontWeight: 500,
               }}
             >
@@ -31,19 +33,19 @@ export default function RulesPage() {
             </Title>
           </Stack>
 
-          <Stack gap={32} maw={900}>
-            <Stack gap={16}>
+          <Stack gap="lg" maw={900}>
+            <Stack gap="md">
               <Text
                 style={{
                   color: "#cfc8be",
                   textTransform: "uppercase",
                   letterSpacing: 2.5,
-                  fontSize: 14,
+                  fontSize: "clamp(12px, 2vw, 14px)",
                 }}
               >
                 ::
               </Text>
-              <Text c="gray.4" size="lg" lh={1.8}>
+              <Text c="gray.4" size="md" lh={1.8}>
                 {t.rule1}
               </Text>
             </Stack>

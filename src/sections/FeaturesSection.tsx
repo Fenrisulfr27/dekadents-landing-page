@@ -4,7 +4,11 @@ import { features } from "../data/features";
 
 export function FeaturesSection() {
   return (
-    <Container size={1280} mt={42} px={0}>
+    <Container
+      size={1280}
+      mt={{ base: 32, sm: 36, md: 42 }}
+      px={{ base: 0, sm: 20, md: 40 }}
+    >
       <Card
         radius={0}
         padding={0}
@@ -14,13 +18,15 @@ export function FeaturesSection() {
           borderBottom: "1px solid rgba(255,255,255,0.08)",
         }}
       >
-        <SimpleGrid cols={{ base: 1, sm: 2, md: 4 }} spacing={0}>
+        <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing={0}>
           {features.map((feature, index) => (
             <Box
               key={feature.titleKey}
               style={{
                 borderLeft:
                   index === 0 ? "none" : "1px solid rgba(255,255,255,0.06)",
+                borderTop:
+                  index < 2 ? "none" : "1px solid rgba(255,255,255,0.06)",
               }}
             >
               <FeatureCard feature={feature} />

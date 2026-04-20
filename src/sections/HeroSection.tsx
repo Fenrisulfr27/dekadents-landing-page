@@ -18,30 +18,35 @@ export function HeroSection() {
   const t = translations[language];
 
   return (
-    <Container size={1280} pt={46} pb={0}>
-      <Grid gutter={40} align="center">
+    <Container
+      size={1280}
+      pt={{ base: 88, sm: 100, md: 120 }}
+      pb={0}
+      px={{ base: 16, sm: 20, md: 40 }}
+    >
+      <Grid gutter={{ base: 24, sm: 32, md: 40 }} align="center">
         <Grid.Col span={{ base: 12, md: 5 }}>
-          <Stack gap="lg" maw={390}>
+          <Stack gap={{ base: "md", sm: "lg" }} maw={390}>
             <Box>
               <Title
                 order={1}
                 style={{
-                  fontSize: "clamp(52px, 7vw, 76px)",
-                  letterSpacing: 7,
+                  fontSize: "clamp(36px, 8vw, 76px)",
+                  letterSpacing: 5,
                   fontWeight: 500,
-                  lineHeight: 1,
+                  lineHeight: 1.1,
                 }}
               >
                 {t.dekadents}
               </Title>
 
               <Text
-                mt="md"
+                mt={{ base: "sm", sm: "md" }}
                 style={{
                   color: "#c8c2b8",
-                  letterSpacing: 2.6,
-                  fontSize: 15,
-                  lineHeight: 1.45,
+                  letterSpacing: 2.2,
+                  fontSize: "clamp(12px, 2vw, 15px)",
+                  lineHeight: 1.5,
                   maxWidth: 300,
                 }}
               >
@@ -51,11 +56,11 @@ export function HeroSection() {
 
             <Divider color="rgba(255,255,255,0.1)" maw={160} />
 
-            <Text c="gray.4" size="lg" lh={1.7} maw={340}>
+            <Text c="gray.4" size="md" lh={1.7} maw={340}>
               {t.communityText}
             </Text>
 
-            <Group>
+            <Group gap={{ base: 8, sm: 12 }} wrap="wrap">
               <Button
                 component="a"
                 href="https://discord.gg/wCykm7AFNE"
@@ -70,8 +75,8 @@ export function HeroSection() {
                     border: "1px solid rgba(255,255,255,0.12)",
                     textTransform: "uppercase",
                     letterSpacing: 2,
-                    paddingInline: 22,
-                    minWidth: 148,
+                    paddingInline: 16,
+                    minWidth: "auto",
                   },
                 }}
               >
@@ -88,8 +93,8 @@ export function HeroSection() {
                     borderColor: "rgba(255,255,255,0.18)",
                     textTransform: "uppercase",
                     letterSpacing: 2,
-                    paddingInline: 22,
-                    minWidth: 132,
+                    paddingInline: 16,
+                    minWidth: "auto",
                   },
                 }}
               >

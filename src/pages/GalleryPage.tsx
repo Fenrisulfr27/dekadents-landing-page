@@ -169,19 +169,20 @@ function GalleryCard({ item }: { item: GalleryItem }) {
             letterSpacing: 1.5,
             textTransform: "uppercase",
             background: "rgba(0,0,0,0.28)",
+            fontSize: "10px",
           }}
         >
           {t[item.category]}
         </Badge>
       </Box>
 
-      <Stack gap={10} p="lg">
+      <Stack gap={10} p={{ base: "md", sm: "lg" }}>
         <Text
           style={{
             color: "#e6dfd4",
             textTransform: "uppercase",
             letterSpacing: 3,
-            fontSize: 22,
+            fontSize: "clamp(16px, 3.5vw, 22px)",
             lineHeight: 1.1,
           }}
         >
@@ -197,7 +198,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
         </Text>
 
         {item.description && (
-          <Text c="gray.4" size="md" lh={1.7}>
+          <Text c="gray.4" size="sm" lh={1.7}>
             {item.description}
           </Text>
         )}
@@ -222,17 +223,19 @@ export default function GalleryPage() {
     <PageFrame>
       <Container
         size={1280}
-        py={72}
+        pt={{ base: 88, sm: 100, md: 120 }}
+        pb={{ base: 40, sm: 52, md: 72 }}
+        px={{ base: 16, sm: 20, md: 40 }}
         style={{ position: "relative", zIndex: 1 }}
       >
-        <Stack gap={42}>
-          <Stack gap={16} maw={760}>
+        <Stack gap="lg">
+          <Stack gap="md" maw={760}>
             <Text
               style={{
                 color: "#cfc8be",
                 textTransform: "uppercase",
                 letterSpacing: 3,
-                fontSize: 14,
+                fontSize: "clamp(11px, 1.5vw, 14px)",
               }}
             >
               {t.curatedArchive}
@@ -242,25 +245,26 @@ export default function GalleryPage() {
               order={1}
               style={{
                 fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                fontSize: "clamp(42px, 6vw, 78px)",
-                lineHeight: 1,
-                letterSpacing: 6,
+                fontSize: "clamp(32px, 7vw, 78px)",
+                lineHeight: 1.1,
+                letterSpacing: 5,
                 fontWeight: 500,
               }}
             >
               {t.gallery}
             </Title>
 
-            <Text c="gray.4" size="xl" maw={700} lh={1.7}>
+            <Text c="gray.4" size="md" maw={700} lh={1.7}>
               {t.galleryDescription}
             </Text>
           </Stack>
 
-          <Group gap="sm">
+          <Group gap="sm" wrap="wrap">
             {filters.map((filter) => (
               <Button
                 key={filter}
                 radius={0}
+                size="sm"
                 variant={activeFilter === filter ? "filled" : "outline"}
                 onClick={() => setActiveFilter(filter)}
                 styles={{
@@ -270,7 +274,8 @@ export default function GalleryPage() {
                     color: activeFilter === filter ? "#111" : "#e7e0d6",
                     borderColor: "rgba(255,255,255,0.18)",
                     textTransform: "uppercase",
-                    letterSpacing: 2,
+                    letterSpacing: 1.5,
+                    fontSize: "clamp(10px, 1.5vw, 12px)",
                   },
                 }}
               >
@@ -296,19 +301,19 @@ export default function GalleryPage() {
                 style={{
                   width: "100%",
                   height: "100%",
-                  minHeight: 460,
+                  minHeight: "clamp(300px, 50vw, 460px)",
                   objectFit: "cover",
                   display: "block",
                   filter: "brightness(0.82) contrast(1.06)",
                 }}
               />
-              <Stack justify="center" p={{ base: "xl", md: 48 }} gap="lg">
+              <Stack justify="center" p={{ base: 20, sm: 32, md: 48 }} gap="lg">
                 <Text
                   style={{
                     color: "#bfb7ab",
                     textTransform: "uppercase",
                     letterSpacing: 2.5,
-                    fontSize: 14,
+                    fontSize: "clamp(11px, 1.5vw, 14px)",
                   }}
                 >
                   {t.featuredWork}
@@ -318,8 +323,8 @@ export default function GalleryPage() {
                   order={2}
                   style={{
                     fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                    fontSize: "clamp(34px, 4vw, 54px)",
-                    letterSpacing: 4,
+                    fontSize: "clamp(28px, 5.5vw, 54px)",
+                    letterSpacing: 3,
                     fontWeight: 500,
                     lineHeight: 1.05,
                   }}
@@ -335,7 +340,7 @@ export default function GalleryPage() {
                   {featured.artist}
                 </Text>
 
-                <Text c="gray.4" size="lg" lh={1.8} maw={520}>
+                <Text c="gray.4" size="md" lh={1.8} maw={520}>
                   {featured.description}
                 </Text>
                 <Button
@@ -344,6 +349,7 @@ export default function GalleryPage() {
                   target="_blank"
                   rel="noreferrer"
                   radius={0}
+                  size="md"
                   variant="outline"
                   rightSection={<IconArrowRight size={16} />}
                   styles={{
@@ -364,14 +370,14 @@ export default function GalleryPage() {
 
           <SimpleGrid
             cols={{ base: 1, sm: 2, lg: 3 }}
-            spacing="xl"
-            verticalSpacing="xl"
+            spacing="lg"
+            verticalSpacing="lg"
           >
             {filteredItems.map((item) => (
               <GalleryCard key={item.id} item={item} />
             ))}
           </SimpleGrid>
-          <Text c="gray.5" size="sm" mt="md">
+          <Text c="gray.5" size="sm" mt="lg">
             Works by Zdzisław Beksiński, used via Wikimedia Commons under CC
             BY-SA 3.0. Attribution: Zdzisław Beksiński (copyrights inherited by
             Muzeum Historyczne w Sanoku).
@@ -379,27 +385,27 @@ export default function GalleryPage() {
 
           <Card
             radius={0}
-            p={48}
+            p={{ base: 24, sm: 32, md: 48 }}
             style={{
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
               border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            <Stack align="center" gap="xl">
+            <Stack align="center" gap="lg">
               <Text
                 style={{
                   fontFamily: '"Cinzel", "Cormorant Garamond", serif',
                   textTransform: "uppercase",
-                  letterSpacing: 6,
-                  fontSize: "clamp(28px, 4vw, 52px)",
-                  lineHeight: 1,
+                  letterSpacing: 4,
+                  fontSize: "clamp(20px, 5vw, 52px)",
+                  lineHeight: 1.1,
                 }}
               >
                 {t.submitWork}
               </Text>
 
-              <Text c="gray.4" ta="center" maw={760} size="lg" lh={1.8}>
+              <Text c="gray.4" ta="center" maw={760} size="md" lh={1.8}>
                 {t.submitDescription}
               </Text>
 
@@ -408,14 +414,14 @@ export default function GalleryPage() {
                 href="https://discord.gg/wCykm7AFNE"
                 target="_blank"
                 radius={0}
-                size="lg"
-                leftSection={<IconBrandDiscord size={18} />}
+                size="md"
+                leftSection={<IconBrandDiscord size={16} />}
                 styles={{
                   root: {
                     background: "#ece5d8",
                     color: "#111",
                     textTransform: "uppercase",
-                    letterSpacing: 2.5,
+                    letterSpacing: 2,
                   },
                 }}
               >

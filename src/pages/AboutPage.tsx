@@ -12,40 +12,42 @@ export default function AboutPage() {
     <PageFrame>
       <Container
         size={1280}
-        py={72}
+        pt={{ base: 88, sm: 100, md: 120 }}
+        pb={{ base: 40, sm: 52, md: 72 }}
+        px={{ base: 16, sm: 20, md: 40 }}
         style={{ position: "relative", zIndex: 1 }}
       >
-        <Stack gap={42}>
-          <Stack gap={16} maw={900}>
+        <Stack gap="lg">
+          <Stack gap="md" maw={900}>
             <Title
               order={1}
               style={{
                 fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                fontSize: "clamp(42px, 6vw, 78px)",
-                lineHeight: 1,
-                letterSpacing: 6,
+                fontSize: "clamp(32px, 7vw, 78px)",
+                lineHeight: 1.1,
+                letterSpacing: 5,
                 fontWeight: 500,
               }}
             >
               {t.aboutTitle}
             </Title>
 
-            <Text c="gray.4" size="lg" lh={1.8}>
+            <Text c="gray.4" size="md" lh={1.8}>
               {t.aboutDescription}
             </Text>
           </Stack>
 
           <Divider color="rgba(255,255,255,0.1)" />
 
-          <Stack gap={32} maw={900}>
-            <Stack gap={16}>
+          <Stack gap="lg" maw={900}>
+            <Stack gap="md">
               <Title
                 order={2}
                 style={{
                   fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                  fontSize: "clamp(28px, 4vw, 48px)",
-                  lineHeight: 1,
-                  letterSpacing: 4,
+                  fontSize: "clamp(24px, 5vw, 48px)",
+                  lineHeight: 1.1,
+                  letterSpacing: 3,
                   fontWeight: 500,
                   color: "#ddd7ce",
                 }}
@@ -53,21 +55,21 @@ export default function AboutPage() {
                 {t.aboutMission}
               </Title>
 
-              <Text c="gray.4" size="lg" lh={1.8}>
+              <Text c="gray.4" size="md" lh={1.8}>
                 {t.aboutMissionText}
               </Text>
             </Stack>
 
             <Divider color="rgba(255,255,255,0.1)" />
 
-            <Stack gap={16}>
+            <Stack gap="md">
               <Title
                 order={2}
                 style={{
                   fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                  fontSize: "clamp(28px, 4vw, 48px)",
-                  lineHeight: 1,
-                  letterSpacing: 4,
+                  fontSize: "clamp(24px, 5vw, 48px)",
+                  lineHeight: 1.1,
+                  letterSpacing: 3,
                   fontWeight: 500,
                   color: "#ddd7ce",
                 }}
@@ -77,7 +79,7 @@ export default function AboutPage() {
 
               <Text
                 c="gray.4"
-                size="lg"
+                size="md"
                 lh={1.8}
                 style={{ whiteSpace: "pre-line" }}
               >

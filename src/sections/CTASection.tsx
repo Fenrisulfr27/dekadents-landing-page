@@ -15,11 +15,16 @@ export function CTASection() {
   const { language } = useLanguage();
   const t = translations[language];
   return (
-    <Container size={1280} pt={42} pb={58}>
+    <Container
+      size={1280}
+      pt={{ base: 32, sm: 36, md: 42 }}
+      pb={{ base: 40, sm: 48, md: 58 }}
+      px={{ base: 16, sm: 20, md: 40 }}
+    >
       <Box
         style={{
           position: "relative",
-          minHeight: 290,
+          minHeight: "clamp(220px, 50vw, 290px)",
           borderTop: "1px solid rgba(255,255,255,0.04)",
           background:
             "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)), radial-gradient(circle at center, rgba(255,255,255,0.02), transparent 45%)",
@@ -34,11 +39,17 @@ export function CTASection() {
             position: "absolute",
             left: 0,
             bottom: 0,
-            width: 320,
+            width: "clamp(120px, 25vw, 320px)",
             maxWidth: "28vw",
             opacity: 0.86,
             pointerEvents: "none",
             userSelect: "none",
+            display: "none",
+          }}
+          sx={{
+            "@media (min-width: 640px)": {
+              display: "block",
+            },
           }}
         />
 
@@ -50,54 +61,69 @@ export function CTASection() {
             position: "absolute",
             right: 0,
             bottom: 0,
-            width: 330,
+            width: "clamp(120px, 25vw, 330px)",
             maxWidth: "30vw",
             opacity: 0.84,
             pointerEvents: "none",
             userSelect: "none",
+            display: "none",
+          }}
+          sx={{
+            "@media (min-width: 640px)": {
+              display: "block",
+            },
           }}
         />
 
         <Stack
           align="center"
           justify="center"
-          gap="xl"
-          h={290}
-          style={{ position: "relative", zIndex: 1 }}
+          gap={{ base: "md", sm: "lg" }}
+          style={{
+            position: "relative",
+            zIndex: 1,
+            minHeight: "inherit",
+            padding: "20px 16px",
+          }}
         >
-          <Group gap="md" align="center" wrap="nowrap">
-            <Divider color="rgba(255,255,255,0.14)" w={90} visibleFrom="sm" />
+          <Group
+            gap={{ base: "sm", sm: "md" }}
+            align="center"
+            wrap="nowrap"
+            justify="center"
+          >
+            <Divider color="rgba(255,255,255,0.14)" w={60} visibleFrom="sm" />
             <Text
               ta="center"
               style={{
                 color: "#ddd7ce",
-                letterSpacing: 8,
+                letterSpacing: 6,
                 textTransform: "uppercase",
-                fontSize: "clamp(28px, 4vw, 54px)",
-                lineHeight: 1,
+                fontSize: "clamp(20px, 5vw, 54px)",
+                lineHeight: 1.2,
               }}
             >
               {t.enterDecadence}
             </Text>
-            <Divider color="rgba(255,255,255,0.14)" w={90} visibleFrom="sm" />
+            <Divider color="rgba(255,255,255,0.14)" w={60} visibleFrom="sm" />
           </Group>
 
           <Button
             component="a"
             href="https://discord.gg/wCykm7AFNE"
             target="_blank"
-            size="lg"
+            size="md"
             radius={0}
-            leftSection={<IconBrandDiscord size={18} />}
+            leftSection={<IconBrandDiscord size={16} />}
             styles={{
               root: {
                 background: "#ece5d8",
                 color: "#111111",
                 border: "1px solid rgba(255,255,255,0.14)",
                 textTransform: "uppercase",
-                letterSpacing: 3,
-                minWidth: 270,
-                height: 52,
+                letterSpacing: 2,
+                minWidth: "clamp(200px, 60vw, 270px)",
+                height: "clamp(40px, 8vw, 52px)",
               },
             }}
           >

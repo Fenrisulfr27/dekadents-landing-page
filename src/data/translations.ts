@@ -1,5 +1,6 @@
 export const translations = {
   en: {
+    menu: "Menu",
     home: "Home",
     about: "About",
     gallery: "Gallery",
@@ -57,6 +58,7 @@ export const translations = {
   },
 
   et: {
+    menu: "Menüü",
     home: "Avaleht",
     about: "Meist",
     gallery: "Galerii",
