@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Divider,
   Grid,
   Group,
@@ -10,6 +9,8 @@ import {
   Title,
 } from "@mantine/core";
 import { IconBrandDiscord } from "@tabler/icons-react";
+import { SectionContainer } from "../components/SectionContainer";
+import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 
@@ -18,15 +19,10 @@ export function HeroSection() {
   const t = translations[language];
 
   return (
-    <Container
-      size={1280}
-      pt={{ base: 88, sm: 100, md: 120 }}
-      pb={0}
-      px={{ base: 16, sm: 20, md: 40 }}
-    >
+    <SectionContainer pb={0}>
       <Grid gutter={{ base: 24, sm: 32, md: 40 }} align="center">
         <Grid.Col span={{ base: 12, md: 5 }}>
-          <Stack gap={{ base: "md", sm: "lg" }} maw={390}>
+          <Stack gap="lg" maw={390}>
             <Box>
               <Title
                 order={1}
@@ -60,7 +56,7 @@ export function HeroSection() {
               {t.communityText}
             </Text>
 
-            <Group gap={{ base: 8, sm: 12 }} wrap="wrap">
+            <Group gap="sm" wrap="wrap">
               <Button
                 component="a"
                 href="https://discord.gg/wCykm7AFNE"
@@ -84,6 +80,8 @@ export function HeroSection() {
               </Button>
 
               <Button
+                component={Link}
+                to="/about"
                 size="md"
                 radius={0}
                 variant="outline"
@@ -124,6 +122,6 @@ export function HeroSection() {
           </Group>
         </Grid.Col>
       </Grid>
-    </Container>
+    </SectionContainer>
   );
 }

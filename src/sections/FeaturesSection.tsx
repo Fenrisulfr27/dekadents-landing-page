@@ -1,12 +1,13 @@
-import { Box, Card, Container, SimpleGrid } from "@mantine/core";
+import { Box, Card, SimpleGrid } from "@mantine/core";
+import { SectionContainer } from "../components/SectionContainer";
 import { FeatureCard } from "../components/FeatureCard";
 import { features } from "../data/features";
 
 export function FeaturesSection() {
   return (
-    <Container
-      size={1280}
-      mt={{ base: 32, sm: 36, md: 42 }}
+    <SectionContainer
+      pt={{ base: 32, sm: 36, md: 42 }}
+      pb={0}
       px={{ base: 0, sm: 20, md: 40 }}
     >
       <Card
@@ -34,6 +35,6 @@ export function FeaturesSection() {
           ))}
         </SimpleGrid>
       </Card>
-    </Container>
+    </SectionContainer>
   );
 }

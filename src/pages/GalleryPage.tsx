@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Card,
-  Container,
   Group,
   Overlay,
   SimpleGrid,
@@ -12,6 +11,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { SectionContainer } from "../components/SectionContainer";
 import { IconBrandDiscord, IconArrowRight } from "@tabler/icons-react";
 import PageFrame from "../components/PageFrame";
 import { useLanguage } from "../context/LanguageContext";
@@ -221,13 +221,7 @@ export default function GalleryPage() {
 
   return (
     <PageFrame>
-      <Container
-        size={1280}
-        pt={{ base: 88, sm: 100, md: 120 }}
-        pb={{ base: 40, sm: 52, md: 72 }}
-        px={{ base: 16, sm: 20, md: 40 }}
-        style={{ position: "relative", zIndex: 1 }}
-      >
+      <SectionContainer>
         <Stack gap="lg">
           <Stack gap="md" maw={760}>
             <Text
@@ -430,7 +424,7 @@ export default function GalleryPage() {
             </Stack>
           </Card>
         </Stack>
-      </Container>
+      </SectionContainer>
     </PageFrame>
   );
 }

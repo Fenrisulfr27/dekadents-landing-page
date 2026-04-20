@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Group,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Box, Button, Divider, Group, Stack, Text } from "@mantine/core";
+import { SectionContainer } from "../components/SectionContainer";
 import { IconBrandDiscord } from "@tabler/icons-react";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
@@ -15,11 +8,9 @@ export function CTASection() {
   const { language } = useLanguage();
   const t = translations[language];
   return (
-    <Container
-      size={1280}
+    <SectionContainer
       pt={{ base: 32, sm: 36, md: 42 }}
       pb={{ base: 40, sm: 48, md: 58 }}
-      px={{ base: 16, sm: 20, md: 40 }}
     >
       <Box
         style={{
@@ -33,6 +24,7 @@ export function CTASection() {
       >
         <Box
           component="img"
+          className="cta-image-hidden-mobile"
           src="/assets/dead-tree-left.svg"
           alt=""
           style={{
@@ -46,15 +38,11 @@ export function CTASection() {
             userSelect: "none",
             display: "none",
           }}
-          sx={{
-            "@media (min-width: 640px)": {
-              display: "block",
-            },
-          }}
         />
 
         <Box
           component="img"
+          className="cta-image-hidden-mobile"
           src="/assets/castle-right.png"
           alt=""
           style={{
@@ -68,17 +56,12 @@ export function CTASection() {
             userSelect: "none",
             display: "none",
           }}
-          sx={{
-            "@media (min-width: 640px)": {
-              display: "block",
-            },
-          }}
         />
 
         <Stack
           align="center"
           justify="center"
-          gap={{ base: "md", sm: "lg" }}
+          gap="lg"
           style={{
             position: "relative",
             zIndex: 1,
@@ -86,12 +69,7 @@ export function CTASection() {
             padding: "20px 16px",
           }}
         >
-          <Group
-            gap={{ base: "sm", sm: "md" }}
-            align="center"
-            wrap="nowrap"
-            justify="center"
-          >
+          <Group gap="md" align="center" wrap="nowrap" justify="center">
             <Divider color="rgba(255,255,255,0.14)" w={60} visibleFrom="sm" />
             <Text
               ta="center"
@@ -131,6 +109,6 @@ export function CTASection() {
           </Button>
         </Stack>
       </Box>
-    </Container>
+    </SectionContainer>
   );
 }

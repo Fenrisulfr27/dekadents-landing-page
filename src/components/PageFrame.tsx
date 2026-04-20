@@ -25,6 +25,32 @@ export default function PageFrame({ children }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
+
+  const navLinks = navItems.map((item) => ({
+    item,
+    href:
+      item === "home"
+        ? "/"
+        : item === "about"
+          ? "/about"
+          : item === "gallery"
+            ? "/gallery"
+            : item === "rules"
+              ? "/rules"
+              : "/",
+    label: t[item],
+  }));
+
+  const discordButtonStyles = {
+    root: {
+      color: "#ece7de",
+      borderColor: "rgba(255,255,255,0.18)",
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      background: "rgba(255,255,255,0.01)",
+    },
+  };
+
   return (
     <Box
       style={{
@@ -109,37 +135,24 @@ export default function PageFrame({ children }: Props) {
                 />
 
                 <Group gap={38} visibleFrom="md">
-                  {navItems.map((item) => {
-                    const href =
-                      item === "home"
-                        ? "/"
-                        : item === "about"
-                          ? "/about"
-                          : item === "gallery"
-                            ? "/gallery"
-                            : item === "rules"
-                              ? "/rules"
-                              : "/";
-
-                    return (
-                      <Text
-                        key={item}
-                        component={Link}
-                        to={href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        style={{
-                          color: "#bbb4aa",
-                          textTransform: "uppercase",
-                          letterSpacing: 3,
-                          fontSize: 13,
-                          cursor: "pointer",
-                          textDecoration: "none",
-                        }}
-                      >
-                        {t[item]}
-                      </Text>
-                    );
-                  })}
+                  {navLinks.map(({ item, href, label }) => (
+                    <Text
+                      key={item}
+                      component={Link}
+                      to={href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      style={{
+                        color: "#bbb4aa",
+                        textTransform: "uppercase",
+                        letterSpacing: 3,
+                        fontSize: 13,
+                        cursor: "pointer",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {label}
+                    </Text>
+                  ))}
                 </Group>
 
                 <Group gap="md">
@@ -154,12 +167,9 @@ export default function PageFrame({ children }: Props) {
                     leftSection={<IconBrandDiscord size={16} />}
                     size="xs"
                     styles={{
+                      ...discordButtonStyles,
                       root: {
-                        color: "#ece7de",
-                        borderColor: "rgba(255,255,255,0.18)",
-                        textTransform: "uppercase",
-                        letterSpacing: 1,
-                        background: "rgba(255,255,255,0.01)",
+                        ...discordButtonStyles.root,
                         padding: "6px 12px",
                       },
                     }}
@@ -174,15 +184,7 @@ export default function PageFrame({ children }: Props) {
                     variant="outline"
                     visibleFrom="sm"
                     leftSection={<IconBrandDiscord size={16} />}
-                    styles={{
-                      root: {
-                        color: "#ece7de",
-                        borderColor: "rgba(255,255,255,0.18)",
-                        textTransform: "uppercase",
-                        letterSpacing: 1,
-                        background: "rgba(255,255,255,0.01)",
-                      },
-                    }}
+                    styles={discordButtonStyles}
                   >
                     {t.joinDiscord}
                   </Button>
@@ -237,38 +239,25 @@ export default function PageFrame({ children }: Props) {
                 </Button>
               </Group>
               <Divider color="rgba(255,255,255,0.1)" />
-              {navItems.map((item) => {
-                const href =
-                  item === "home"
-                    ? "/"
-                    : item === "about"
-                      ? "/about"
-                      : item === "gallery"
-                        ? "/gallery"
-                        : item === "rules"
-                          ? "/rules"
-                          : "/";
-
-                return (
-                  <Text
-                    key={item}
-                    component={Link}
-                    to={href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      color: "#bbb4aa",
-                      textTransform: "uppercase",
-                      letterSpacing: 2,
-                      fontSize: 14,
-                      cursor: "pointer",
-                      textDecoration: "none",
-                      padding: "8px 0",
-                    }}
-                  >
-                    {t[item]}
-                  </Text>
-                );
-              })}
+              {navLinks.map(({ item, href, label }) => (
+                <Text
+                  key={item}
+                  component={Link}
+                  to={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  style={{
+                    color: "#bbb4aa",
+                    textTransform: "uppercase",
+                    letterSpacing: 2,
+                    fontSize: 14,
+                    cursor: "pointer",
+                    textDecoration: "none",
+                    padding: "8px 0",
+                  }}
+                >
+                  {label}
+                </Text>
+              ))}
             </Stack>
           </Drawer>
 

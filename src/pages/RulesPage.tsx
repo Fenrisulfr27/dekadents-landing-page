@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Stack, Text, Title } from "@mantine/core";
+import { Stack, Text, Title } from "@mantine/core";
 import PageFrame from "../components/PageFrame";
+import { SectionContainer } from "../components/SectionContainer";
 import { useLanguage } from "../context/LanguageContext";
 import { translations } from "../data/translations";
 
@@ -10,13 +11,7 @@ export default function RulesPage() {
 
   return (
     <PageFrame>
-      <Container
-        size={1280}
-        pt={{ base: 88, sm: 100, md: 120 }}
-        pb={{ base: 40, sm: 52, md: 72 }}
-        px={{ base: 16, sm: 20, md: 40 }}
-        style={{ position: "relative", zIndex: 1 }}
-      >
+      <SectionContainer>
         <Stack gap="xl">
           <Stack gap="md" maw={760}>
             <Title
@@ -51,7 +46,7 @@ export default function RulesPage() {
             </Stack>
           </Stack>
         </Stack>
-      </Container>
+      </SectionContainer>
     </PageFrame>
   );
 }
