@@ -106,7 +106,7 @@ export function HeroSection() {
           <Group justify="center">
             <Box
               component="img"
-              src="/assets/logo.png"
+              src="/assets/logo.webp"
               alt="Dekadents - Discordi kogukond kunstnikele ja loomeinimestele"
               style={{
                 width: "100%",

@@ -79,7 +79,7 @@ export default function PageFrame({ children }: Props) {
             backgroundColor: "#050505",
             backgroundImage: [
               "linear-gradient(180deg, rgba(8,8,8,0.88), rgba(3,3,3,0.98))",
-              "url('/assets/hero.jpg')",
+              "url('/assets/hero.webp')",
             ].join(", "),
             backgroundSize: "cover, cover",
             backgroundPosition: "center top, center top",
@@ -125,7 +125,7 @@ export default function PageFrame({ children }: Props) {
               <Group justify="space-between" h="100%">
                 <Box
                   component="img"
-                  src="/assets/logo.png"
+                  src="/assets/logo.webp"
                   alt="Dekadents logo"
                   style={{
                     width: 50,
