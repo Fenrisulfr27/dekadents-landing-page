@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dekadents.eu/sitemap.xml

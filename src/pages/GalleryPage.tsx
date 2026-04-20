@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import {
   Badge,
   Box,
@@ -142,6 +143,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
           component="img"
           src={item.image}
           alt={item.title}
+          loading="lazy"
           style={{
             width: "100%",
             height: "100%",
@@ -220,211 +222,232 @@ export default function GalleryPage() {
   const featured = items[0];
 
   return (
-    <PageFrame>
-      <SectionContainer>
-        <Stack gap="lg">
-          <Stack gap="md" maw={760}>
-            <Text
-              style={{
-                color: "#cfc8be",
-                textTransform: "uppercase",
-                letterSpacing: 3,
-                fontSize: "clamp(11px, 1.5vw, 14px)",
-              }}
-            >
-              {t.curatedArchive}
-            </Text>
-
-            <Title
-              order={1}
-              style={{
-                fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                fontSize: "clamp(32px, 7vw, 78px)",
-                lineHeight: 1.1,
-                letterSpacing: 5,
-                fontWeight: 500,
-              }}
-            >
-              {t.gallery}
-            </Title>
-
-            <Text c="gray.4" size="md" maw={700} lh={1.7}>
-              {t.galleryDescription}
-            </Text>
-          </Stack>
-
-          <Group gap="sm" wrap="wrap">
-            {filters.map((filter) => (
-              <Button
-                key={filter}
-                radius={0}
-                size="sm"
-                variant={activeFilter === filter ? "filled" : "outline"}
-                onClick={() => setActiveFilter(filter)}
-                styles={{
-                  root: {
-                    background:
-                      activeFilter === filter ? "#ece5d8" : "transparent",
-                    color: activeFilter === filter ? "#111" : "#e7e0d6",
-                    borderColor: "rgba(255,255,255,0.18)",
-                    textTransform: "uppercase",
-                    letterSpacing: 1.5,
-                    fontSize: "clamp(10px, 1.5vw, 12px)",
-                  },
+    <>
+      <Helmet>
+        <title>Galerii — Dekadents</title>
+        <meta
+          name="description"
+          content="Dekadentsi kureeritud galerii tumeda esteetikaga visuaalsetest eksperimentidest ja kogukonna valitud töödest. Avastage kunstnike, fotograafide ja loomeinimeste loomingut."
+        />
+        <meta property="og:title" content="Galerii — Dekadents" />
+        <meta
+          property="og:description"
+          content="Kureeritud galerii tumeda esteetikaga visuaalsetest eksperimentidest ja valitud töödest Dekadentsi kogukonnast."
+        />
+        <meta property="og:url" content="https://dekadents.eu/gallery" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://dekadents.eu/gallery" />
+      </Helmet>
+      <PageFrame>
+        <SectionContainer>
+          <Stack gap="lg">
+            <Stack gap="md" maw={760}>
+              <Text
+                style={{
+                  color: "#cfc8be",
+                  textTransform: "uppercase",
+                  letterSpacing: 3,
+                  fontSize: "clamp(11px, 1.5vw, 14px)",
                 }}
               >
-                {t[filter]}
-              </Button>
-            ))}
-          </Group>
+                {t.curatedArchive}
+              </Text>
 
-          <Card
-            radius={0}
-            padding={0}
-            style={{
-              overflow: "hidden",
-              background: "rgba(255,255,255,0.015)",
-              border: "1px solid rgba(255,255,255,0.08)",
-            }}
-          >
-            <SimpleGrid cols={{ base: 1, md: 2 }} spacing={0}>
-              <Box
-                component="img"
-                src={featured.image}
-                alt={featured.title}
+              <Title
+                order={1}
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  minHeight: "clamp(300px, 50vw, 460px)",
-                  objectFit: "cover",
-                  display: "block",
-                  filter: "brightness(0.82) contrast(1.06)",
+                  fontFamily: '"Cinzel", "Cormorant Garamond", serif',
+                  fontSize: "clamp(32px, 7vw, 78px)",
+                  lineHeight: 1.1,
+                  letterSpacing: 5,
+                  fontWeight: 500,
                 }}
-              />
-              <Stack justify="center" p={{ base: 20, sm: 32, md: 48 }} gap="lg">
-                <Text
-                  style={{
-                    color: "#bfb7ab",
-                    textTransform: "uppercase",
-                    letterSpacing: 2.5,
-                    fontSize: "clamp(11px, 1.5vw, 14px)",
-                  }}
-                >
-                  {t.featuredWork}
-                </Text>
+              >
+                {t.gallery}
+              </Title>
 
-                <Title
-                  order={2}
-                  style={{
-                    fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                    fontSize: "clamp(28px, 5.5vw, 54px)",
-                    letterSpacing: 3,
-                    fontWeight: 500,
-                    lineHeight: 1.05,
-                  }}
-                >
-                  {featured.title}
-                </Title>
+              <Text c="gray.4" size="md" maw={700} lh={1.7}>
+                {t.galleryDescription}
+              </Text>
+            </Stack>
 
-                <Text
-                  c="gray.5"
-                  size="sm"
-                  style={{ textTransform: "uppercase", letterSpacing: 2 }}
-                >
-                  {featured.artist}
-                </Text>
-
-                <Text c="gray.4" size="md" lh={1.8} maw={520}>
-                  {featured.description}
-                </Text>
+            <Group gap="sm" wrap="wrap">
+              {filters.map((filter) => (
                 <Button
-                  component="a"
-                  href={featured.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  key={filter}
                   radius={0}
-                  size="md"
-                  variant="outline"
-                  rightSection={<IconArrowRight size={16} />}
+                  size="sm"
+                  variant={activeFilter === filter ? "filled" : "outline"}
+                  onClick={() => setActiveFilter(filter)}
                   styles={{
                     root: {
-                      alignSelf: "flex-start",
+                      background:
+                        activeFilter === filter ? "#ece5d8" : "transparent",
+                      color: activeFilter === filter ? "#111" : "#e7e0d6",
                       borderColor: "rgba(255,255,255,0.18)",
-                      color: "#ece5d8",
+                      textTransform: "uppercase",
+                      letterSpacing: 1.5,
+                      fontSize: "clamp(10px, 1.5vw, 12px)",
+                    },
+                  }}
+                >
+                  {t[filter]}
+                </Button>
+              ))}
+            </Group>
+
+            <Card
+              radius={0}
+              padding={0}
+              style={{
+                overflow: "hidden",
+                background: "rgba(255,255,255,0.015)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing={0}>
+                <Box
+                  component="img"
+                  src={featured.image}
+                  alt={featured.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    minHeight: "clamp(300px, 50vw, 460px)",
+                    objectFit: "cover",
+                    display: "block",
+                    filter: "brightness(0.82) contrast(1.06)",
+                  }}
+                />
+                <Stack
+                  justify="center"
+                  p={{ base: 20, sm: 32, md: 48 }}
+                  gap="lg"
+                >
+                  <Text
+                    style={{
+                      color: "#bfb7ab",
+                      textTransform: "uppercase",
+                      letterSpacing: 2.5,
+                      fontSize: "clamp(11px, 1.5vw, 14px)",
+                    }}
+                  >
+                    {t.featuredWork}
+                  </Text>
+
+                  <Title
+                    order={2}
+                    style={{
+                      fontFamily: '"Cinzel", "Cormorant Garamond", serif',
+                      fontSize: "clamp(28px, 5.5vw, 54px)",
+                      letterSpacing: 3,
+                      fontWeight: 500,
+                      lineHeight: 1.05,
+                    }}
+                  >
+                    {featured.title}
+                  </Title>
+
+                  <Text
+                    c="gray.5"
+                    size="sm"
+                    style={{ textTransform: "uppercase", letterSpacing: 2 }}
+                  >
+                    {featured.artist}
+                  </Text>
+
+                  <Text c="gray.4" size="md" lh={1.8} maw={520}>
+                    {featured.description}
+                  </Text>
+                  <Button
+                    component="a"
+                    href={featured.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    radius={0}
+                    size="md"
+                    variant="outline"
+                    rightSection={<IconArrowRight size={16} />}
+                    styles={{
+                      root: {
+                        alignSelf: "flex-start",
+                        borderColor: "rgba(255,255,255,0.18)",
+                        color: "#ece5d8",
+                        textTransform: "uppercase",
+                        letterSpacing: 2,
+                      },
+                    }}
+                  >
+                    View work
+                  </Button>
+                </Stack>
+              </SimpleGrid>
+            </Card>
+
+            <SimpleGrid
+              cols={{ base: 1, sm: 2, lg: 3 }}
+              spacing="lg"
+              verticalSpacing="lg"
+            >
+              {filteredItems.map((item) => (
+                <GalleryCard key={item.id} item={item} />
+              ))}
+            </SimpleGrid>
+            <Text c="gray.5" size="sm" mt="lg">
+              Works by Zdzisław Beksiński, used via Wikimedia Commons under CC
+              BY-SA 3.0. Attribution: Zdzisław Beksiński (copyrights inherited
+              by Muzeum Historyczne w Sanoku).
+            </Text>
+
+            <Card
+              radius={0}
+              p={{ base: 24, sm: 32, md: 48 }}
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <Stack align="center" gap="lg">
+                <Text
+                  style={{
+                    fontFamily: '"Cinzel", "Cormorant Garamond", serif',
+                    textTransform: "uppercase",
+                    letterSpacing: 4,
+                    fontSize: "clamp(20px, 5vw, 52px)",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {t.submitWork}
+                </Text>
+
+                <Text c="gray.4" ta="center" maw={760} size="md" lh={1.8}>
+                  {t.submitDescription}
+                </Text>
+
+                <Button
+                  component="a"
+                  href="https://discord.gg/wCykm7AFNE"
+                  target="_blank"
+                  radius={0}
+                  size="md"
+                  leftSection={<IconBrandDiscord size={16} />}
+                  styles={{
+                    root: {
+                      background: "#ece5d8",
+                      color: "#111",
                       textTransform: "uppercase",
                       letterSpacing: 2,
                     },
                   }}
                 >
-                  View work
+                  {t.joinOurDiscord}
                 </Button>
               </Stack>
-            </SimpleGrid>
-          </Card>
-
-          <SimpleGrid
-            cols={{ base: 1, sm: 2, lg: 3 }}
-            spacing="lg"
-            verticalSpacing="lg"
-          >
-            {filteredItems.map((item) => (
-              <GalleryCard key={item.id} item={item} />
-            ))}
-          </SimpleGrid>
-          <Text c="gray.5" size="sm" mt="lg">
-            Works by Zdzisław Beksiński, used via Wikimedia Commons under CC
-            BY-SA 3.0. Attribution: Zdzisław Beksiński (copyrights inherited by
-            Muzeum Historyczne w Sanoku).
-          </Text>
-
-          <Card
-            radius={0}
-            p={{ base: 24, sm: 32, md: 48 }}
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
-              border: "1px solid rgba(255,255,255,0.08)",
-            }}
-          >
-            <Stack align="center" gap="lg">
-              <Text
-                style={{
-                  fontFamily: '"Cinzel", "Cormorant Garamond", serif',
-                  textTransform: "uppercase",
-                  letterSpacing: 4,
-                  fontSize: "clamp(20px, 5vw, 52px)",
-                  lineHeight: 1.1,
-                }}
-              >
-                {t.submitWork}
-              </Text>
-
-              <Text c="gray.4" ta="center" maw={760} size="md" lh={1.8}>
-                {t.submitDescription}
-              </Text>
-
-              <Button
-                component="a"
-                href="https://discord.gg/wCykm7AFNE"
-                target="_blank"
-                radius={0}
-                size="md"
-                leftSection={<IconBrandDiscord size={16} />}
-                styles={{
-                  root: {
-                    background: "#ece5d8",
-                    color: "#111",
-                    textTransform: "uppercase",
-                    letterSpacing: 2,
-                  },
-                }}
-              >
-                {t.joinOurDiscord}
-              </Button>
-            </Stack>
-          </Card>
-        </Stack>
-      </SectionContainer>
-    </PageFrame>
+            </Card>
+          </Stack>
+        </SectionContainer>
+      </PageFrame>
+    </>
   );
 }
