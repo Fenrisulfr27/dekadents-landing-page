@@ -83,7 +83,7 @@ function ExhibitionCard({ item }: { item: Exhibition }) {
                 color: "#777064",
                 textTransform: "uppercase",
                 letterSpacing: 2,
-                fontSize: 12,
+                fontSize: 20,
               }}
             >
               {item.source}
@@ -103,7 +103,7 @@ function ExhibitionCard({ item }: { item: Exhibition }) {
               color: "#d8d0c3",
               letterSpacing: 1.2,
               textTransform: "uppercase",
-              fontSize: 10,
+              fontSize: 20,
             }}
           >
             {item.source}
@@ -139,7 +139,7 @@ function ExhibitionCard({ item }: { item: Exhibition }) {
         {item.location && (
           <Text
             c="gray.5"
-            size="sm"
+            size="md"
             style={{ textTransform: "uppercase", letterSpacing: 1.4 }}
           >
             {item.location}
@@ -147,7 +147,7 @@ function ExhibitionCard({ item }: { item: Exhibition }) {
         )}
 
         {item.description && (
-          <Text c="gray.4" size="sm" lh={1.65} lineClamp={4}>
+          <Text c="gray.4" size="md" lh={1.65} lineClamp={4}>
             {item.description}
           </Text>
         )}
@@ -239,7 +239,7 @@ export default function ExhibitionsPage() {
                     color: "#cfc8be",
                     textTransform: "uppercase",
                     letterSpacing: 3,
-                    fontSize: "clamp(11px, 1.5vw, 14px)",
+                    fontSize: "20px",
                   }}
                 >
                   {t.exhibitionsEyebrow}
@@ -285,7 +285,7 @@ export default function ExhibitionsPage() {
                 <Button
                   key={source}
                   radius={0}
-                  size="sm"
+                  size="md"
                   variant={activeSource === source ? "filled" : "outline"}
                   onClick={() => setActiveSource(source)}
                   styles={{
@@ -296,7 +296,7 @@ export default function ExhibitionsPage() {
                       borderColor: "rgba(255,255,255,0.18)",
                       textTransform: "uppercase",
                       letterSpacing: 1.4,
-                      fontSize: "clamp(10px, 1.5vw, 12px)",
+                      fontSize: "20px",
                     },
                   }}
                 >
@@ -335,7 +335,7 @@ export default function ExhibitionsPage() {
             </SimpleGrid>
 
             {data?.fetchedAt && (
-              <Text c="gray.6" size="sm">
+              <Text c="gray.6" size="md">
                 {t.lastUpdated}:{" "}
                 {new Intl.DateTimeFormat(language === "et" ? "et-EE" : "en", {
                   dateStyle: "medium",

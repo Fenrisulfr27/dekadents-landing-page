@@ -171,7 +171,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
             letterSpacing: 1.5,
             textTransform: "uppercase",
             background: "rgba(0,0,0,0.28)",
-            fontSize: "10px",
+            fontSize: "20px",
           }}
         >
           {t[item.category]}
@@ -184,7 +184,7 @@ function GalleryCard({ item }: { item: GalleryItem }) {
             color: "#e6dfd4",
             textTransform: "uppercase",
             letterSpacing: 3,
-            fontSize: "clamp(16px, 3.5vw, 22px)",
+            fontSize: "clamp(20px, 3.5vw, 22px)",
             lineHeight: 1.1,
           }}
         >
@@ -193,14 +193,14 @@ function GalleryCard({ item }: { item: GalleryItem }) {
 
         <Text
           c="gray.5"
-          size="sm"
+          size="md"
           style={{ letterSpacing: 1.8, textTransform: "uppercase" }}
         >
           {item.artist}
         </Text>
 
         {item.description && (
-          <Text c="gray.4" size="sm" lh={1.7}>
+          <Text c="gray.4" size="md" lh={1.7}>
             {item.description}
           </Text>
         )}
@@ -247,7 +247,7 @@ export default function GalleryPage() {
                   color: "#cfc8be",
                   textTransform: "uppercase",
                   letterSpacing: 3,
-                  fontSize: "clamp(11px, 1.5vw, 14px)",
+                  fontSize: "20px",
                 }}
               >
                 {t.curatedArchive}
@@ -276,7 +276,7 @@ export default function GalleryPage() {
                 <Button
                   key={filter}
                   radius={0}
-                  size="sm"
+                  size="md"
                   variant={activeFilter === filter ? "filled" : "outline"}
                   onClick={() => setActiveFilter(filter)}
                   styles={{
@@ -287,7 +287,7 @@ export default function GalleryPage() {
                       borderColor: "rgba(255,255,255,0.18)",
                       textTransform: "uppercase",
                       letterSpacing: 1.5,
-                      fontSize: "clamp(10px, 1.5vw, 12px)",
+                      fontSize: "20px",
                     },
                   }}
                 >
@@ -329,7 +329,7 @@ export default function GalleryPage() {
                       color: "#bfb7ab",
                       textTransform: "uppercase",
                       letterSpacing: 2.5,
-                      fontSize: "clamp(11px, 1.5vw, 14px)",
+                      fontSize: "20px",
                     }}
                   >
                     {t.featuredWork}
@@ -350,7 +350,7 @@ export default function GalleryPage() {
 
                   <Text
                     c="gray.5"
-                    size="sm"
+                    size="md"
                     style={{ textTransform: "uppercase", letterSpacing: 2 }}
                   >
                     {featured.artist}
@@ -393,7 +393,7 @@ export default function GalleryPage() {
                 <GalleryCard key={item.id} item={item} />
               ))}
             </SimpleGrid>
-            <Text c="gray.5" size="sm" mt="lg">
+            <Text c="gray.5" size="md" mt="lg">
               Works by Zdzisław Beksiński, used via Wikimedia Commons under CC
               BY-SA 3.0. Attribution: Zdzisław Beksiński (copyrights inherited
               by Muzeum Historyczne w Sanoku).

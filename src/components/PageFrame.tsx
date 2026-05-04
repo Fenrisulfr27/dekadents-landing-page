@@ -147,7 +147,7 @@ export default function PageFrame({ children }: Props) {
                         color: "#bbb4aa",
                         textTransform: "uppercase",
                         letterSpacing: 3,
-                        fontSize: 13,
+                        fontSize: 20,
                         cursor: "pointer",
                         textDecoration: "none",
                       }}
@@ -167,7 +167,7 @@ export default function PageFrame({ children }: Props) {
                     variant="outline"
                     hiddenFrom="sm"
                     leftSection={<IconBrandDiscord size={16} />}
-                    size="xs"
+                    size="md"
                     styles={{
                       ...discordButtonStyles,
                       root: {
@@ -226,7 +226,7 @@ export default function PageFrame({ children }: Props) {
           >
             <Stack gap="md" pt="md">
               <Group justify="space-between" mb="md">
-                <Text size="sm" fw={500} c="gray.4">
+                <Text size="md" fw={500} c="gray.4">
                   {t.menu}
                 </Text>
                 <Button
@@ -251,7 +251,7 @@ export default function PageFrame({ children }: Props) {
                     color: "#bbb4aa",
                     textTransform: "uppercase",
                     letterSpacing: 2,
-                    fontSize: 14,
+                    fontSize: 20,
                     cursor: "pointer",
                     textDecoration: "none",
                     padding: "8px 0",

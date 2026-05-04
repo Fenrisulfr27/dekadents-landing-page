@@ -41,7 +41,7 @@ export function HeroSection() {
                 style={{
                   color: "#c8c2b8",
                   letterSpacing: 2.2,
-                  fontSize: "clamp(12px, 2vw, 15px)",
+                  fontSize: "20px",
                   lineHeight: 1.5,
                   maxWidth: 300,
                 }}

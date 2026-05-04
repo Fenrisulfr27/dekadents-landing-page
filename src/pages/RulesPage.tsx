@@ -52,7 +52,7 @@ export default function RulesPage() {
                     color: "#cfc8be",
                     textTransform: "uppercase",
                     letterSpacing: 2.5,
-                    fontSize: "clamp(12px, 2vw, 14px)",
+                    fontSize: "20px",
                   }}
                 >
                   ::

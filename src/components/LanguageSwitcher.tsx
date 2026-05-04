@@ -7,7 +7,7 @@ export function LanguageSwitcher() {
   return (
     <Group gap={4}>
       <Button
-        size="sm"
+        size="md"
         radius={0}
         variant={language === "en" ? "filled" : "outline"}
         onClick={() => setLanguage("en")}
@@ -21,14 +21,14 @@ export function LanguageSwitcher() {
             textTransform: "uppercase",
             letterSpacing: 1,
             padding: "0 clamp(8px, 2vw, 12px)",
-            fontSize: "clamp(10px, 1.5vw, 12px)",
+            fontSize: "20px",
           },
         }}
       >
         ENG
       </Button>
       <Button
-        size="sm"
+        size="md"
         radius={0}
         variant={language === "et" ? "filled" : "outline"}
         onClick={() => setLanguage("et")}
@@ -42,7 +42,7 @@ export function LanguageSwitcher() {
             textTransform: "uppercase",
             letterSpacing: 1,
             padding: "0 clamp(8px, 2vw, 12px)",
-            fontSize: "clamp(10px, 1.5vw, 12px)",
+            fontSize: "20px",
           },
         }}
       >

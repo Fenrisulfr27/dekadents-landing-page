@@ -2,6 +2,17 @@ html,
 body,
 #root {
   font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 20px;
+}
+
+body {
+  font-size: 20px;
+}
+
+.mantine-Text-root,
+.mantine-Button-root,
+.mantine-Badge-root {
+  font-size: 20px;
 }
 
 h1,

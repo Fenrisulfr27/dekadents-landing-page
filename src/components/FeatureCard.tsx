@@ -33,7 +33,7 @@ export function FeatureCard({ feature }: Props) {
             color: "#d5d0c7",
             textTransform: "uppercase",
             letterSpacing: 3.8,
-            fontSize: "clamp(14px, 2.5vw, 19px)",
+            fontSize: "20px",
           }}
         >
           {t[feature.titleKey]}
