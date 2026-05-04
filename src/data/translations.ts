@@ -4,6 +4,7 @@ export const translations = {
     home: "Home",
     about: "About",
     gallery: "Gallery",
+    exhibitions: "Exhibitions",
     rules: "Rules",
     join: "Join",
     joinDiscord: "Join Discord",
@@ -13,6 +14,14 @@ export const translations = {
     curatedArchive: "Curated archive",
     galleryDescription:
       "A curated archive of dark aesthetics, visual experiments, and selected work from the Dekadents community.",
+    exhibitionsEyebrow: "Open exhibitions",
+    exhibitionsDescription:
+      "A live overview of exhibitions gathered from Muuseumikaart, NOBA, and Eesti Kunstimuuseum.",
+    exhibitionsLoadError:
+      "Could not load exhibitions right now. Please try again later.",
+    noExhibitionsFound: "No exhibitions found for this source right now.",
+    refresh: "Refresh",
+    lastUpdated: "Last updated",
     all: "All",
     featured: "Featured",
     digital: "Digital",
@@ -62,6 +71,7 @@ export const translations = {
     home: "Avaleht",
     about: "Meist",
     gallery: "Galerii",
+    exhibitions: "Näitused",
     rules: "Reeglid",
     join: "Liitu",
     joinDiscord: "Liitu Discordiga",
@@ -108,6 +118,14 @@ export const translations = {
     curatedArchive: "Kureeritud arhiiv",
     galleryDescription:
       "Tumeda esteetika, visuaalsete katsetuste ja Dekadentsi kogukonna valitud tööde kureeritud arhiiv.",
+    exhibitionsEyebrow: "Avatud näitused",
+    exhibitionsDescription:
+      "Jooksev ülevaade näitustest Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist.",
+    exhibitionsLoadError:
+      "Näitusi ei õnnestunud praegu laadida. Proovi hiljem uuesti.",
+    noExhibitionsFound: "Selle allika alt ei leitud praegu näitusi.",
+    refresh: "Värskenda",
+    lastUpdated: "Viimati uuendatud",
     all: "Kõik",
     featured: "Esiletõstetud",
     digital: "Digitaalne",

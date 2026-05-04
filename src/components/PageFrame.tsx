@@ -33,8 +33,10 @@ export default function PageFrame({ children }: Props) {
         ? "/"
         : item === "about"
           ? "/about"
-          : item === "gallery"
-            ? "/gallery"
+        : item === "gallery"
+          ? "/gallery"
+          : item === "exhibitions"
+            ? "/exhibitions"
             : item === "rules"
               ? "/rules"
               : "/",
