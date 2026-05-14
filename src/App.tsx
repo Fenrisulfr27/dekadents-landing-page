@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import GalleryPage from "./pages/GalleryPage";
 import RulesPage from "./pages/RulesPage";
 import ExhibitionsPage from "./pages/ExhibitionsPage";
+import StatisticsPage from "./pages/StatisticsPage";
 import { LanguageProvider } from "./context/LanguageContext";
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/exhibitions" element={<ExhibitionsPage />} />
+          <Route path="/statistics" element={<StatisticsPage />} />
           <Route path="/rules" element={<RulesPage />} />
         </Routes>
       </LanguageProvider>

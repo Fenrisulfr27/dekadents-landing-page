@@ -44,9 +44,11 @@ export default function PageFrame({ children }: Props) {
           ? "/gallery"
           : item === "exhibitions"
             ? "/exhibitions"
-            : item === "rules"
-              ? "/rules"
-              : "/",
+            : item === "statistics"
+              ? "/statistics"
+              : item === "rules"
+                ? "/rules"
+                : "/",
     label: t[item],
   }));
 
