@@ -4,6 +4,7 @@ let cachedClient;
 
 const defaultDbName = "dekadents_db";
 const periodOrder = ["week", "month"];
+const dateKeyPattern = /^\d{4}-\d{2}-\d{2}$/;
 
 function json(statusCode, body, cacheControl = "no-store") {
   return {
@@ -44,6 +45,73 @@ function publicPeriodKey(period) {
   return period;
 }
 
+function getTallinnDateKey(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Tallinn",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+
+  const values = Object.fromEntries(
+    parts
+      .filter((part) => part.type !== "literal")
+      .map((part) => [part.type, part.value]),
+  );
+
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function addDaysToDateKey(dateKey, days) {
+  const date = new Date(`${dateKey}T00:00:00.000Z`);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function getPeriodBounds(todayKey = getTallinnDateKey()) {
+  const today = new Date(`${todayKey}T00:00:00.000Z`);
+  const day = today.getUTCDay();
+  const daysSinceMonday = (day + 6) % 7;
+
+  return {
+    todayKey,
+    weekStartKey: addDaysToDateKey(todayKey, -daysSinceMonday),
+    monthStartKey: `${todayKey.slice(0, 8)}01`,
+  };
+}
+
+function emptyPeriodStats() {
+  return {
+    totalLines: 0,
+    totalWords: 0,
+    activeUsers: 0,
+    lastMessageAt: null,
+  };
+}
+
+function addRowToPeriod(stats, activeUsers, row) {
+  stats.totalLines += row.lineCount ?? 0;
+  stats.totalWords += row.wordCount ?? 0;
+
+  if (row.userId) {
+    activeUsers.add(row.userId);
+  }
+
+  if (
+    row.lastMessageAt &&
+    (!stats.lastMessageAt || new Date(row.lastMessageAt) > new Date(stats.lastMessageAt))
+  ) {
+    stats.lastMessageAt = row.lastMessageAt;
+  }
+}
+
+function finalizePeriodStats(stats, activeUsers) {
+  return {
+    ...stats,
+    activeUsers: activeUsers.size,
+  };
+}
+
 export async function handler(event = {}) {
   if (event?.httpMethod === "OPTIONS") {
     return json(204, {});
@@ -54,6 +122,7 @@ export async function handler(event = {}) {
     const db = getDb(client);
     const activity = db.collection("user_activity");
     const periods = db.collection("user_activity_periods");
+    const { todayKey, weekStartKey, monthStartKey } = getPeriodBounds();
 
     const [
       activitySummary,
@@ -75,32 +144,26 @@ export async function handler(event = {}) {
         .next(),
       activity.distinct("userId").then((ids) => ids.length),
       periods
-        .aggregate([
+        .find(
           {
-            $match: {
-              period: { $in: periodOrder },
-            },
+            $or: [
+              { period: { $in: periodOrder } },
+              { period: { $gte: monthStartKey, $lte: todayKey } },
+              { key: { $gte: monthStartKey, $lte: todayKey } },
+            ],
           },
           {
-            $group: {
-              _id: "$period",
-              totalLines: { $sum: { $ifNull: ["$lineCount", 0] } },
-              totalWords: { $sum: { $ifNull: ["$wordCount", 0] } },
-              activeUsers: { $addToSet: "$userId" },
-              lastMessageAt: { $max: "$lastMessageAt" },
-            },
-          },
-          {
-            $project: {
+            projection: {
               _id: 0,
-              period: "$_id",
-              totalLines: 1,
-              totalWords: 1,
-              activeUsers: { $size: "$activeUsers" },
+              period: 1,
+              key: 1,
+              userId: 1,
+              lineCount: 1,
+              wordCount: 1,
               lastMessageAt: 1,
             },
           },
-        ])
+        )
         .toArray(),
       activity
         .aggregate([
@@ -145,26 +208,66 @@ export async function handler(event = {}) {
         .toArray(),
     ]);
 
-    const periodStats = Object.fromEntries(
-      periodOrder.map((period) => [
-        publicPeriodKey(period),
-        {
-          totalLines: 0,
-          totalWords: 0,
-          activeUsers: 0,
-          lastMessageAt: null,
-        },
-      ]),
+    const legacyPeriodStats = Object.fromEntries(
+      periodOrder.map((period) => [publicPeriodKey(period), emptyPeriodStats()]),
     );
+    const legacyPeriodUsers = Object.fromEntries(
+      periodOrder.map((period) => [publicPeriodKey(period), new Set()]),
+    );
+    const datePeriodStats = {
+      thisWeek: emptyPeriodStats(),
+      thisMonth: emptyPeriodStats(),
+    };
+    const datePeriodUsers = {
+      thisWeek: new Set(),
+      thisMonth: new Set(),
+    };
+    let hasDatePeriodRows = false;
 
     for (const row of periodRows) {
-      periodStats[publicPeriodKey(row.period)] = {
-        totalLines: row.totalLines ?? 0,
-        totalWords: row.totalWords ?? 0,
-        activeUsers: row.activeUsers ?? 0,
-        lastMessageAt: row.lastMessageAt ?? null,
-      };
+      const period = row.period ?? row.key;
+
+      if (dateKeyPattern.test(period)) {
+        hasDatePeriodRows = true;
+
+        if (period >= monthStartKey && period <= todayKey) {
+          addRowToPeriod(datePeriodStats.thisMonth, datePeriodUsers.thisMonth, row);
+        }
+
+        if (period >= weekStartKey && period <= todayKey) {
+          addRowToPeriod(datePeriodStats.thisWeek, datePeriodUsers.thisWeek, row);
+        }
+
+        continue;
+      }
+
+      const publicKey = publicPeriodKey(period);
+      if (legacyPeriodStats[publicKey]) {
+        addRowToPeriod(legacyPeriodStats[publicKey], legacyPeriodUsers[publicKey], row);
+      }
     }
+
+    const periodStats = hasDatePeriodRows
+      ? {
+          thisWeek: finalizePeriodStats(
+            datePeriodStats.thisWeek,
+            datePeriodUsers.thisWeek,
+          ),
+          thisMonth: finalizePeriodStats(
+            datePeriodStats.thisMonth,
+            datePeriodUsers.thisMonth,
+          ),
+        }
+      : {
+          thisWeek: finalizePeriodStats(
+            legacyPeriodStats.thisWeek,
+            legacyPeriodUsers.thisWeek,
+          ),
+          thisMonth: finalizePeriodStats(
+            legacyPeriodStats.thisMonth,
+            legacyPeriodUsers.thisMonth,
+          ),
+        };
 
     return json(
       200,
