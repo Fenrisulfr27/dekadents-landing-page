@@ -10,7 +10,12 @@ import {
   Stack,
   Divider,
 } from "@mantine/core";
-import { IconBrandDiscord, IconMenu2, IconX } from "@tabler/icons-react";
+import {
+  IconBrandDiscord,
+  IconBrandFacebook,
+  IconMenu2,
+  IconX,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { navItems } from "../data/features";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -25,6 +30,8 @@ export default function PageFrame({ children }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
   const t = translations[language];
+  const discordUrl = "https://discord.gg/wCykm7AFNE";
+  const facebookUrl = "https://www.facebook.com/profile.php?id=61589665440058";
 
   const navLinks = navItems.map((item) => ({
     item,
@@ -50,6 +57,14 @@ export default function PageFrame({ children }: Props) {
       textTransform: "uppercase",
       letterSpacing: 1,
       background: "rgba(255,255,255,0.01)",
+    },
+  };
+
+  const socialLinkStyles = {
+    root: {
+      color: "#cfc8be",
+      background: "transparent",
+      border: "none",
     },
   };
 
@@ -161,7 +176,7 @@ export default function PageFrame({ children }: Props) {
                   <LanguageSwitcher />
                   <Button
                     component="a"
-                    href="https://discord.gg/wCykm7AFNE"
+                    href={discordUrl}
                     target="_blank"
                     radius={0}
                     variant="outline"
@@ -180,7 +195,7 @@ export default function PageFrame({ children }: Props) {
                   </Button>
                   <Button
                     component="a"
-                    href="https://discord.gg/wCykm7AFNE"
+                    href={discordUrl}
                     target="_blank"
                     radius={0}
                     variant="outline"
@@ -263,7 +278,54 @@ export default function PageFrame({ children }: Props) {
             </Stack>
           </Drawer>
 
-          <AppShell.Main>{children}</AppShell.Main>
+          <AppShell.Main>
+            {children}
+
+            <Box
+              component="footer"
+              mt={{ base: 48, sm: 64 }}
+            >
+              <Container size={1280} px={{ base: 16, sm: 20 }}>
+                <Group
+                  justify="center"
+                  align="center"
+                  gap="md"
+                  py={{ base: 22, sm: 28 }}
+                >
+                  <Group gap="sm" wrap="wrap">
+                    <Button
+                      component="a"
+                      href={facebookUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="subtle"
+                      aria-label="Facebook"
+                      p={0}
+                      w={48}
+                      h={48}
+                      styles={socialLinkStyles}
+                    >
+                      <IconBrandFacebook size={32} />
+                    </Button>
+                    <Button
+                      component="a"
+                      href={discordUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="subtle"
+                      aria-label="Discord"
+                      p={0}
+                      w={48}
+                      h={48}
+                      styles={socialLinkStyles}
+                    >
+                      <IconBrandDiscord size={32} />
+                    </Button>
+                  </Group>
+                </Group>
+              </Container>
+            </Box>
+          </AppShell.Main>
         </AppShell>
       </Box>
     </Box>
