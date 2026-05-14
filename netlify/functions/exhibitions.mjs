@@ -198,7 +198,7 @@ export async function handler() {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "Cache-Control": "public, max-age=900, stale-while-revalidate=3600",
+      "Cache-Control": "public, max-age=21600, stale-while-revalidate=86400",
       "Content-Type": "application/json; charset=utf-8",
     },
     body: JSON.stringify({ fetchedAt, exhibitions, errors }),
