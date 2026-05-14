@@ -111,14 +111,9 @@ export async function handler(event = {}) {
                   "$displayName",
                   {
                     $ifNull: [
-                      "$username",
+                      "$globalName",
                       {
-                        $ifNull: [
-                          "$globalName",
-                          {
-                            $ifNull: ["$name", "$userId"],
-                          },
-                        ],
+                        $ifNull: ["$name", "$userId"],
                       },
                     ],
                   },
@@ -140,8 +135,6 @@ export async function handler(event = {}) {
               _id: 0,
               userId: { $ifNull: ["$userId", null] },
               displayName: { $ifNull: ["$displayName", null] },
-              username: { $ifNull: ["$username", null] },
-              globalName: { $ifNull: ["$globalName", null] },
               name: { $ifNull: ["$publicName", "-"] },
               totalLines: { $ifNull: ["$lineCount", 0] },
               totalWords: { $ifNull: ["$wordCount", 0] },

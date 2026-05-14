@@ -36,7 +36,7 @@ export const translations = {
     allTime: "Total",
     linesShort: "lines",
     wordsShort: "words",
-    lastActivity: "Last activity",
+    lastMessage: "Last message",
     exhibitionsLoadError:
       "Could not load exhibitions right now. Please try again later.",
     noExhibitionsFound: "No exhibitions found for this source right now.",
@@ -160,7 +160,7 @@ export const translations = {
     allTime: "Kokku",
     linesShort: "rida",
     wordsShort: "sõna",
-    lastActivity: "Viimane aktiivsus",
+    lastMessage: "Viimane sõnum",
     exhibitionsLoadError:
       "Näitusi ei õnnestunud praegu laadida. Proovi hiljem uuesti.",
     noExhibitionsFound: "Selle allika alt ei leitud praegu näitusi.",

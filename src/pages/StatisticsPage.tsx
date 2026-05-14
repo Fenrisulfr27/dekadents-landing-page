@@ -40,8 +40,6 @@ type StatisticsResponse = {
   topUsers: {
     userId: string | null;
     displayName: string | null;
-    username: string | null;
-    globalName: string | null;
     name: string;
     totalLines: number;
     totalWords: number;
@@ -62,14 +60,7 @@ function formatDate(value: string | null, locale: string) {
 }
 
 function getUserDisplay(user: StatisticsResponse["topUsers"][number]) {
-  const primary =
-    user.displayName || user.name || user.globalName || user.username || user.userId || "-";
-  const secondaryOptions = [user.username, user.globalName, user.userId].filter(
-    (value): value is string => Boolean(value && value !== primary),
-  );
-  const secondary = secondaryOptions[0];
-
-  return { primary, secondary };
+  return user.displayName || user.name || user.userId || "-";
 }
 
 function StatCard({
@@ -324,10 +315,6 @@ export default function StatisticsPage() {
                               {formatNumber(item.totalWords, locale)}{" "}
                               {t.wordsShort}
                             </Text>
-                            <Text c="gray.6" size="sm">
-                              {t.lastActivity}:{" "}
-                              {formatDate(item.lastMessageAt, locale)}
-                            </Text>
                           </Stack>
                         </Card>
                       ))}
@@ -367,7 +354,7 @@ export default function StatisticsPage() {
 
                           return (
                             <Group
-                              key={`${display.primary}-${user.userId ?? index}`}
+                              key={`${display}-${user.userId ?? index}`}
                               justify="space-between"
                               gap="md"
                               py="sm"
@@ -396,15 +383,10 @@ export default function StatisticsPage() {
                                 </Box>
                                 <Stack gap={2} miw={0}>
                                   <Text c="gray.1" size="md" truncate>
-                                    {display.primary}
+                                    {display}
                                   </Text>
-                                  {display.secondary && (
-                                    <Text c="gray.5" size="sm" truncate>
-                                      {display.secondary}
-                                    </Text>
-                                  )}
                                   <Text c="gray.6" size="sm">
-                                    {t.lastActivity}:{" "}
+                                    {t.lastMessage}:{" "}
                                     {formatDate(user.lastMessageAt, locale)}
                                   </Text>
                                 </Stack>
