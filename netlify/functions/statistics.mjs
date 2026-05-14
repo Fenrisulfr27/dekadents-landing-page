@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 let cachedClient;
 
 const defaultDbName = "dekadents_db";
-const periodOrder = ["day", "week", "month", "year"];
+const periodOrder = ["week", "month"];
 
 function json(statusCode, body, cacheControl = "no-store") {
   return {
@@ -39,10 +39,8 @@ function getDb(client) {
 }
 
 function publicPeriodKey(period) {
-  if (period === "day") return "today";
   if (period === "week") return "thisWeek";
   if (period === "month") return "thisMonth";
-  if (period === "year") return "thisYear";
   return period;
 }
 
@@ -118,7 +116,7 @@ export async function handler(event = {}) {
                         $ifNull: [
                           "$globalName",
                           {
-                            $ifNull: ["$name", null],
+                            $ifNull: ["$name", "$userId"],
                           },
                         ],
                       },
@@ -126,11 +124,6 @@ export async function handler(event = {}) {
                   },
                 ],
               },
-            },
-          },
-          {
-            $match: {
-              publicName: { $type: "string", $ne: "" },
             },
           },
           {
@@ -145,7 +138,11 @@ export async function handler(event = {}) {
           {
             $project: {
               _id: 0,
-              name: "$publicName",
+              userId: { $ifNull: ["$userId", null] },
+              displayName: { $ifNull: ["$displayName", null] },
+              username: { $ifNull: ["$username", null] },
+              globalName: { $ifNull: ["$globalName", null] },
+              name: { $ifNull: ["$publicName", "-"] },
               totalLines: { $ifNull: ["$lineCount", 0] },
               totalWords: { $ifNull: ["$wordCount", 0] },
               lastMessageAt: { $ifNull: ["$lastMessageAt", null] },
@@ -186,7 +183,15 @@ export async function handler(event = {}) {
           totalWords: activitySummary?.totalWords ?? 0,
           lastMessageAt: activitySummary?.lastMessageAt ?? null,
         },
-        periods: periodStats,
+        periods: {
+          ...periodStats,
+          allTime: {
+            totalLines: activitySummary?.totalLines ?? 0,
+            totalWords: activitySummary?.totalWords ?? 0,
+            activeUsers,
+            lastMessageAt: activitySummary?.lastMessageAt ?? null,
+          },
+        },
         topUsers,
       },
       "public, max-age=300, stale-while-revalidate=900",

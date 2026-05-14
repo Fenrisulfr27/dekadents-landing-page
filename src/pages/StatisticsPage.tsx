@@ -33,12 +33,15 @@ type StatisticsResponse = {
     lastMessageAt: string | null;
   };
   periods: {
-    today: PeriodStats;
     thisWeek: PeriodStats;
     thisMonth: PeriodStats;
-    thisYear: PeriodStats;
+    allTime: PeriodStats;
   };
   topUsers: {
+    userId: string | null;
+    displayName: string | null;
+    username: string | null;
+    globalName: string | null;
     name: string;
     totalLines: number;
     totalWords: number;
@@ -56,6 +59,17 @@ function formatDate(value: string | null, locale: string) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
+}
+
+function getUserDisplay(user: StatisticsResponse["topUsers"][number]) {
+  const primary =
+    user.displayName || user.name || user.globalName || user.username || user.userId || "-";
+  const secondaryOptions = [user.username, user.globalName, user.userId].filter(
+    (value): value is string => Boolean(value && value !== primary),
+  );
+  const secondary = secondaryOptions[0];
+
+  return { primary, secondary };
 }
 
 function StatCard({
@@ -140,10 +154,9 @@ export default function StatisticsPage() {
     if (!data) return [];
 
     return [
-      [t.today, data.periods.today],
       [t.thisWeek, data.periods.thisWeek],
       [t.thisMonth, data.periods.thisMonth],
-      [t.thisYear, data.periods.thisYear],
+      [t.allTime, data.periods.allTime],
     ] as const;
   }, [data, t]);
 
@@ -270,7 +283,7 @@ export default function StatisticsPage() {
                       </Title>
                     </Group>
 
-                    <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="md">
+                    <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="md">
                       {periodItems.map(([label, item]) => (
                         <Card
                           key={label}
@@ -349,52 +362,61 @@ export default function StatisticsPage() {
                       </Group>
 
                       <Stack gap={0}>
-                        {data.topUsers.map((user, index) => (
-                          <Group
-                            key={`${user.name}-${index}`}
-                            justify="space-between"
-                            gap="md"
-                            py="sm"
-                            style={{
-                              borderTop:
-                                index === 0
-                                  ? "none"
-                                  : "1px solid rgba(255,255,255,0.07)",
-                            }}
-                          >
-                            <Group gap="md" miw={0}>
-                              <Box
-                                style={{
-                                  width: 34,
-                                  height: 34,
-                                  display: "grid",
-                                  placeItems: "center",
-                                  border: "1px solid rgba(255,255,255,0.16)",
-                                  color: "#d8d0c3",
-                                  fontFamily:
-                                    '"Cinzel", "Cormorant Garamond", serif',
-                                  flex: "0 0 auto",
-                                }}
-                              >
-                                {index + 1}
-                              </Box>
-                              <Stack gap={2} miw={0}>
-                                <Text c="gray.1" size="md" truncate>
-                                  {user.name}
-                                </Text>
-                                <Text c="gray.6" size="sm">
-                                  {t.lastActivity}:{" "}
-                                  {formatDate(user.lastMessageAt, locale)}
-                                </Text>
-                              </Stack>
-                            </Group>
+                        {data.topUsers.map((user, index) => {
+                          const display = getUserDisplay(user);
 
-                            <Text c="gray.4" size="md" ta="right">
-                              {formatNumber(user.totalLines, locale)}{" "}
-                              {t.linesShort}
-                            </Text>
-                          </Group>
-                        ))}
+                          return (
+                            <Group
+                              key={`${display.primary}-${user.userId ?? index}`}
+                              justify="space-between"
+                              gap="md"
+                              py="sm"
+                              style={{
+                                borderTop:
+                                  index === 0
+                                    ? "none"
+                                    : "1px solid rgba(255,255,255,0.07)",
+                              }}
+                            >
+                              <Group gap="md" miw={0}>
+                                <Box
+                                  style={{
+                                    width: 34,
+                                    height: 34,
+                                    display: "grid",
+                                    placeItems: "center",
+                                    border: "1px solid rgba(255,255,255,0.16)",
+                                    color: "#d8d0c3",
+                                    fontFamily:
+                                      '"Cinzel", "Cormorant Garamond", serif',
+                                    flex: "0 0 auto",
+                                  }}
+                                >
+                                  {index + 1}
+                                </Box>
+                                <Stack gap={2} miw={0}>
+                                  <Text c="gray.1" size="md" truncate>
+                                    {display.primary}
+                                  </Text>
+                                  {display.secondary && (
+                                    <Text c="gray.5" size="sm" truncate>
+                                      {display.secondary}
+                                    </Text>
+                                  )}
+                                  <Text c="gray.6" size="sm">
+                                    {t.lastActivity}:{" "}
+                                    {formatDate(user.lastMessageAt, locale)}
+                                  </Text>
+                                </Stack>
+                              </Group>
+
+                              <Text c="gray.4" size="md" ta="right">
+                                {formatNumber(user.totalLines, locale)}{" "}
+                                {t.linesShort}
+                              </Text>
+                            </Group>
+                          );
+                        })}
                       </Stack>
                     </Stack>
                   </Card>
