@@ -13,15 +13,15 @@ export default function AboutPage() {
   return (
     <>
       <Helmet>
-        <title>Meist — Dekadents</title>
+        <title>Meist — Dekadentsi Eesti kunstikogukond</title>
         <meta
           name="description"
-          content="Tutvu Dekadentsi missiooni ja väärtustega. Kureeritud Discordi kogukond kunstnikele, kes väärtustavad originaalsust, atmosfääri ja kunstilist identiteeti."
+          content="Tutvu Dekadentsi missiooni ja väärtustega. Kureeritud Eesti kunstikogukond Discordis kunstnikele ja loomeinimestele, kes väärtustavad originaalsust ja kunstilist identiteeti."
         />
-        <meta property="og:title" content="Meist — Dekadents" />
+        <meta property="og:title" content="Meist — Dekadentsi Eesti kunstikogukond" />
         <meta
           property="og:description"
-          content="Dekadents on kureeritud Discordi kogukond kunstnikele, fotograafidele ja loomeinimestele."
+          content="Dekadents on kureeritud Eesti kunstikogukond Discordis kunstnikele, fotograafidele ja loomeinimestele."
         />
         <meta property="og:url" content="https://dekadents.eu/about" />
         <meta property="og:type" content="website" />

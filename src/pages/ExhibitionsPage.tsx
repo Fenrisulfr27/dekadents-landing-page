@@ -214,19 +214,36 @@ export default function ExhibitionsPage() {
   return (
     <>
       <Helmet>
-        <title>Näitused — Dekadents</title>
+        <title>Eesti kunstinäitused — Dekadents</title>
         <meta
           name="description"
-          content="Dekadentsi näituste vaheleht koondab avatud näitusi Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist."
+          content="Dekadents koondab avatud Eesti kunstinäitusi Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist. Leia näitusi, kunstisündmusi ja inspiratsiooni."
         />
-        <meta property="og:title" content="Näitused — Dekadents" />
+        <meta property="og:title" content="Eesti kunstinäitused — Dekadents" />
         <meta
           property="og:description"
-          content="Avatud näitused Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist."
+          content="Avatud Eesti kunstinäitused Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist."
         />
         <meta property="og:url" content="https://dekadents.eu/exhibitions" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dekadents.eu/exhibitions" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Eesti kunstinäitused",
+            url: "https://dekadents.eu/exhibitions",
+            inLanguage: "et-EE",
+            description:
+              "Dekadentsi ülevaade avatud Eesti kunstinäitustest Muuseumikaardilt, NOBAst ja Eesti Kunstimuuseumist.",
+            about: ["Eesti kunst", "kunstinäitused", "kunstisündmused"],
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Dekadents",
+              url: "https://dekadents.eu",
+            },
+          })}
+        </script>
       </Helmet>
 
       <PageFrame>

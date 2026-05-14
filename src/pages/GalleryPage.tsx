@@ -224,19 +224,35 @@ export default function GalleryPage() {
   return (
     <>
       <Helmet>
-        <title>Galerii — Dekadents</title>
+        <title>Kunstigalerii — Dekadents</title>
         <meta
           name="description"
-          content="Dekadentsi kureeritud galerii tumeda esteetikaga visuaalsetest eksperimentidest ja kogukonna valitud töödest. Avastage kunstnike, fotograafide ja loomeinimeste loomingut."
+          content="Dekadentsi kunstigalerii koondab visuaalseid eksperimente, Eesti kunsti inspiratsiooni ja kogukonna valitud töid. Avasta kunstnike, fotograafide ja loomeinimeste loomingut."
         />
-        <meta property="og:title" content="Galerii — Dekadents" />
+        <meta property="og:title" content="Kunstigalerii — Dekadents" />
         <meta
           property="og:description"
-          content="Kureeritud galerii tumeda esteetikaga visuaalsetest eksperimentidest ja valitud töödest Dekadentsi kogukonnast."
+          content="Kureeritud kunstigalerii visuaalsetest eksperimentidest, Eesti kunsti inspiratsioonist ja valitud töödest Dekadentsi kogukonnast."
         />
         <meta property="og:url" content="https://dekadents.eu/gallery" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dekadents.eu/gallery" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Dekadentsi kunstigalerii",
+            url: "https://dekadents.eu/gallery",
+            inLanguage: "et-EE",
+            description:
+              "Kureeritud galerii kunstist, visuaalsetest eksperimentidest ja Dekadentsi kogukonna valitud töödest.",
+            isPartOf: {
+              "@type": "WebSite",
+              name: "Dekadents",
+              url: "https://dekadents.eu",
+            },
+          })}
+        </script>
       </Helmet>
       <PageFrame>
         <SectionContainer>
