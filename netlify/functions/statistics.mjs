@@ -56,14 +56,12 @@ export async function handler(event = {}) {
     const db = getDb(client);
     const activity = db.collection("user_activity");
     const periods = db.collection("user_activity_periods");
-    const points = db.collection("user_points");
 
     const [
       activitySummary,
       activeUsers,
       periodRows,
-      pointsSummary,
-      pointUsers,
+      topUsers,
     ] = await Promise.all([
       activity
         .aggregate([
@@ -106,17 +104,55 @@ export async function handler(event = {}) {
           },
         ])
         .toArray(),
-      points
+      activity
         .aggregate([
           {
-            $group: {
-              _id: null,
-              totalPoints: { $sum: { $ifNull: ["$points", 0] } },
+            $addFields: {
+              publicName: {
+                $ifNull: [
+                  "$displayName",
+                  {
+                    $ifNull: [
+                      "$username",
+                      {
+                        $ifNull: [
+                          "$globalName",
+                          {
+                            $ifNull: ["$name", null],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          },
+          {
+            $match: {
+              publicName: { $type: "string", $ne: "" },
+            },
+          },
+          {
+            $sort: {
+              lineCount: -1,
+              wordCount: -1,
+            },
+          },
+          {
+            $limit: 8,
+          },
+          {
+            $project: {
+              _id: 0,
+              name: "$publicName",
+              totalLines: { $ifNull: ["$lineCount", 0] },
+              totalWords: { $ifNull: ["$wordCount", 0] },
+              lastMessageAt: { $ifNull: ["$lastMessageAt", null] },
             },
           },
         ])
-        .next(),
-      points.distinct("userId").then((ids) => ids.length).catch(() => 0),
+        .toArray(),
     ]);
 
     const periodStats = Object.fromEntries(
@@ -148,11 +184,10 @@ export async function handler(event = {}) {
           activeUsers,
           totalLines: activitySummary?.totalLines ?? 0,
           totalWords: activitySummary?.totalWords ?? 0,
-          totalPoints: pointsSummary?.totalPoints ?? 0,
-          pointUsers,
           lastMessageAt: activitySummary?.lastMessageAt ?? null,
         },
         periods: periodStats,
+        topUsers,
       },
       "public, max-age=300, stale-while-revalidate=900",
     );

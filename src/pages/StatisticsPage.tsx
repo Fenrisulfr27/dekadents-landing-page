@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   Badge,
+  Box,
   Button,
   Card,
   Group,
@@ -29,8 +30,6 @@ type StatisticsResponse = {
     activeUsers: number;
     totalLines: number;
     totalWords: number;
-    totalPoints: number;
-    pointUsers: number;
     lastMessageAt: string | null;
   };
   periods: {
@@ -39,6 +38,12 @@ type StatisticsResponse = {
     thisMonth: PeriodStats;
     thisYear: PeriodStats;
   };
+  topUsers: {
+    name: string;
+    totalLines: number;
+    totalWords: number;
+    lastMessageAt: string | null;
+  }[];
 };
 
 function formatNumber(value: number, locale: string) {
@@ -225,7 +230,7 @@ export default function StatisticsPage() {
 
             {data && (
               <>
-                <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
+                <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
                   <StatCard
                     label={t.activeUsers}
                     value={formatNumber(data.totals.activeUsers, locale)}
@@ -238,11 +243,6 @@ export default function StatisticsPage() {
                   <StatCard
                     label={t.totalWords}
                     value={formatNumber(data.totals.totalWords, locale)}
-                  />
-                  <StatCard
-                    label={t.totalPoints}
-                    value={formatNumber(data.totals.totalPoints, locale)}
-                    note={`${formatNumber(data.totals.pointUsers, locale)} ${t.pointUsers}`}
                   />
                 </SimpleGrid>
 
@@ -321,6 +321,84 @@ export default function StatisticsPage() {
                     </SimpleGrid>
                   </Stack>
                 </Card>
+
+                {data.topUsers.length > 0 && (
+                  <Card
+                    radius={0}
+                    p={{ base: "md", sm: "lg" }}
+                    style={{
+                      background: "rgba(255,255,255,0.018)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                    }}
+                  >
+                    <Stack gap="md">
+                      <Group gap="sm">
+                        <IconUsers size={20} color="#d8d0c3" />
+                        <Title
+                          order={2}
+                          style={{
+                            fontFamily:
+                              '"Cinzel", "Cormorant Garamond", serif',
+                            fontSize: "clamp(24px, 4vw, 36px)",
+                            fontWeight: 500,
+                            letterSpacing: 2,
+                          }}
+                        >
+                          {t.activeMembers}
+                        </Title>
+                      </Group>
+
+                      <Stack gap={0}>
+                        {data.topUsers.map((user, index) => (
+                          <Group
+                            key={`${user.name}-${index}`}
+                            justify="space-between"
+                            gap="md"
+                            py="sm"
+                            style={{
+                              borderTop:
+                                index === 0
+                                  ? "none"
+                                  : "1px solid rgba(255,255,255,0.07)",
+                            }}
+                          >
+                            <Group gap="md" miw={0}>
+                              <Box
+                                style={{
+                                  width: 34,
+                                  height: 34,
+                                  display: "grid",
+                                  placeItems: "center",
+                                  border: "1px solid rgba(255,255,255,0.16)",
+                                  color: "#d8d0c3",
+                                  fontFamily:
+                                    '"Cinzel", "Cormorant Garamond", serif',
+                                  flex: "0 0 auto",
+                                }}
+                              >
+                                {index + 1}
+                              </Box>
+                              <Stack gap={2} miw={0}>
+                                <Text c="gray.1" size="md" truncate>
+                                  {user.name}
+                                </Text>
+                                <Text c="gray.6" size="sm">
+                                  {t.lastActivity}:{" "}
+                                  {formatDate(user.lastMessageAt, locale)}
+                                </Text>
+                              </Stack>
+                            </Group>
+
+                            <Text c="gray.4" size="md" ta="right">
+                              {formatNumber(user.totalLines, locale)}{" "}
+                              {t.linesShort}
+                            </Text>
+                          </Group>
+                        ))}
+                      </Stack>
+                    </Stack>
+                  </Card>
+                )}
 
                 <Text c="gray.6" size="md">
                   {t.lastUpdated}: {formatDate(data.fetchedAt, locale)}
